@@ -128,7 +128,7 @@ class CI_Loader {
 		$this->_ci_library_paths = array(APPPATH, BASEPATH);
 		$this->_ci_helper_paths = array(APPPATH, BASEPATH);
 		$this->_ci_model_paths = array(APPPATH);
-		$this->_ci_view_paths = array(APPPATH.'views/'	=> TRUE);
+		$this->_ci_view_paths = array(APPPATH.'../www/define/view/'	=> TRUE);
 
 		log_message('debug', "Loader Class Initialized");
 	}
@@ -758,7 +758,7 @@ class CI_Loader {
 		else
 		{
 			$_ci_ext = pathinfo($_ci_view, PATHINFO_EXTENSION);
-			$_ci_file = ($_ci_ext == '') ? $_ci_view.'.php' : $_ci_view;
+			$_ci_file = ($_ci_ext == '') ? $_ci_view.'.html' : $_ci_view;
 
 			foreach ($this->_ci_view_paths as $view_file => $cascade)
 			{

@@ -57,7 +57,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = 'system';
+	$system_path = '../system';
 
 /*
  *---------------------------------------------------------------
@@ -73,7 +73,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application';
+	$application_folder = '../application';
 
 /*
  * --------------------------------------------------------------------
@@ -165,7 +165,7 @@ if (defined('ENVIRONMENT'))
 
 	// The PHP file extension
 	// this global constant is deprecated.
-	define('EXT', '.php');
+	define('EXT', 'php');
 
 	// Path to the system folder
 	define('BASEPATH', str_replace("\\", "/", $system_path));
