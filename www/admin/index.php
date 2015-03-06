@@ -4,7 +4,7 @@
      * 来定义我们的视图路径
      * @var VIEWFILE
      */
-    define('VIEWFILE', '../www/define/view/');
+    define('VIEWFILE', '../www/admin/define/view/');
 
 /*
  *---------------------------------------------------------------
@@ -63,7 +63,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = '../system';
+	$system_path = '../../system';
 
 /*
  *---------------------------------------------------------------
@@ -79,7 +79,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = '../application';
+	$application_folder = '../../admin';
 
 /*
  * --------------------------------------------------------------------
