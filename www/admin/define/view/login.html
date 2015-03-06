@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>后台登录页面</title>
+	<style href="../css/login/app.css"></style>
+	<script language="text/javascript" src="../js/plus/jquery-1.11.2.min.js"></script>
+	<script language="text/javascript" src="../js/login/app.js"></script>
+</head>
+<body>
+	<div>
+		<div>
+			<h5>登录后台</h5>
+		</div>
+		<div>
+			<form>
+				<div>
+					<input type="text" name="adNAME" placeholder="用户名">
+				</div>
+				<div>
+					<input type="password" name="adPwd">
+				</div>
+				<div>
+					<div><input type="text" name="adCode"></div>
+					<div id="adCodeImage"></div>
+					<div id="adCodeMsg"></div>
+				</div>
+				<div>
+					<input type="submit" value="登录后台" onsubmit="return valiAble();">
+
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>
