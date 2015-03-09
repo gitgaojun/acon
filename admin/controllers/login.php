@@ -17,6 +17,22 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          }
 
 
+         /**
+          * 登录页面默认展示信息
+          */
+         public function index()
+         {
+            $this->load->helper('code_helper');
+            $this->load->view('login');
+         }
+
+
+
+
+
+         /**
+          * 验证登录信息
+          */
          public function valiableLogin()
          {
             $this->load->model('adLogin');
@@ -45,7 +61,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $this->load->helper('code_helper');
             $code = getCodeImage();
             $_SESSION['adCodeText'] = $code['text'];
-            return $code['image'];
+            exit;
 
          }
 

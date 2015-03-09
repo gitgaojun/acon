@@ -3,13 +3,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
     class adLogin extends CI_Model
     {
-        const TABLE='eload_sys_admin';
 
         function __construct()
         {
-            parent::__construct();
-            $this->load->model('db');
-            $this->db->d_set_db('acon');
+            $this->load->model('m_db');
+            $this->m_db->db_set_database('acon',true);
+
+
 
         }
 
