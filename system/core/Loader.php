@@ -273,7 +273,7 @@ class CI_Loader {
 			show_error('The model name you are loading is the name of a resource that is already being used: '.$name);
 		}
 
-		$model = strtolower($model);
+		//$model = strtolower($model); 关闭，以免不能正常读取,linux上面是区分大小写的，而且这儿我喜欢用陀峰命名法
 
 		foreach ($this->_ci_model_paths as $mod_path)
 		{
