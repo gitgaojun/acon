@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+#order allow,deny
+# ֹһipַ
+#deny from 127.0.0.1
+
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+# L,R 的时候会把我们的新的路由，显示在url地址中，L不会改变url地址，但是路由规则还是被使用了
+#后台路由规则
+RewriteRule ^(.*)/admin-ad-(.*)$ /admin/index.php/login [L]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</IfModule>
