@@ -2,40 +2,42 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-    if(!function_exists('getCodeImage')){
+    class imageCode
+    {
+        private $imageWidth;
+        private $imageHeight;
+        private $backgroundColor;
+        private $textColor;
+        private $arcColor;
+        private $textContent;
 
-        /**
-         * 创建验证码类
-         *
-         */
-        function getCodeImage()
-        {
-            header('Content-type:image/png');
-            $imageWidth = 200;$imageHeight = 50;
-            $codeList = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $im = @imagecreate($imageWidth,$imageHeight)
-            or die("创建图像失败");
-            $backgroundColor = imagecolorallocate($im,255,255,255);
-            $filledarcColor = imagecolorallocate($im,rand(155,255),rand(155,255),rand(155,255));
-            $textColor = imagecolorallocate($im,rand(0,155),rand(0,155),rand(0,155));
-            for($i=1;$i<5;$i++){
-                $textContent[$i]=substr($codeList,rand(0,61),1);
-
-            }
-            $j=2;
-            while($j>0){
-                imagefilledarc($im,rand(0,$imageWidth),rand(0,$imageHeight),rand($imageWidth/5,$imageWidth/3),rand($imageHeight*2,$imageHeight*3),
-                rand(0,30),rand(0,30),$filledarcColor,IMG_ARC_PIE);
-                $j--;
-            }
-            for($i=1;$i<5;$i++){
-                imagettftext($im,rand(20,30),rand(-30,30),$i*$imageWidth/5-4,3*$imageHeight/4,$textColor,'BigCrump.ttf',$textContent[$i]);
-            }
+        public function set($imageWidth,$imageHeight){
+            $this->imageWidth = $imageWidth;
+            $this->imageHeight = $imageHeight;
 
 
-            $code['image'] = imagepng($im);//图像
-            $code['text'] = $textContent;//code
-            imagedestory($im);
-            return $code;
         }
+
+        public function getCodeImage(){
+            header('Content-type:image/png');
+            $im = imagecreate($this->imageWidth,$this->imageHeight) or die('image create filed');
+            $this->backgroundColor=imagecoloralloatc($im,255,255,255);
+            $this->textColor=imagecoloralloatc($im,rand(0,155),rand(0,155),rand(0,155));
+            $this->ovalColor=imagecoloralloatc($im,rand(0,155),rand(0,155),rand(0,155));
+            $textList= '0123456789abcdefjhijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            imagefilledarc($im,rand(0,$this->imageWidth),rand(0,$this->imageHeight),rand($this->imageWidth/5,$this->imageHeight/2),rand($this->imageHeight*2,$this->imageHeight*3),$this->arcColor,IMG_ARC_PIE );
+            for($i=1;$i<5;$i++){
+                $this->textContent[$i]=substr(rand(0,61),1);
+            }
+            for($i=1;$i<5;$i++){
+                imagettftext($im,rand(6,12),rand(-30,30),$i*$this->imageWidth-6,2*$this->imageHeight,$this->textContent[$i],$this->textColor);
+            }
+            $image = imagepng($im);
+            imagedestory($im);
+
+            return $image;
+
+        }
+
+
     }
