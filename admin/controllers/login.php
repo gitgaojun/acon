@@ -58,9 +58,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           */
          public function adCode()
          {
+
             $this->load->helper('code_helper');
-            $code = getCodeImage();
-            $_SESSION['adCodeText'] = $code['text'];
+            codeImage(200,50,"adCodeText");
             exit;
 
          }
