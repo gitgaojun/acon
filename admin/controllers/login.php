@@ -7,7 +7,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
      * @author jun
      *
      */
-    class login extends CI_Controller
+    class login extends MY_Controller
     {
 
 
@@ -46,9 +46,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 $result['status'] = false;
             }else{
                 $result['status'] = $this->adLogin->valiableLogin($adName,$adPwd);
+                $result['status'] = 23;
             }
-
-            return json_encode($result,true);
+            
+            echo json($result);
+            exit;
 
          }
 
