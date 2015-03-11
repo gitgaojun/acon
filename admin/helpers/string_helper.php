@@ -11,14 +11,19 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         function json($arr=[],$type=false)
         {
-            function emptyarr($x)
-            {
-                if(!empty($x)) throw new Exception('数组是个空的数组');
-            }
             try {
-                emptyarr($arr);    
+                if(empty($arr)) {
+                    $debugStr = '数组是个空的数组,<br>';
+                    $debugList = debug_backtrace();//用来追踪文件位置
+                    //print_r($debugList);exit;
+                    $debugStr .= '<stong style="color:red">文件错误位置'.$debugList[0]['file'].":".
+                                $debugList[0]['line']."&nbsp;&nbsp;&nbsp;&nbsp;"."调用函数:".$debugList[0]['function']."报错".
+                                '</stong><br><br>';
+                    throw new Exception($debugStr);   
+                }
             } catch (Exception $e) {
                 echo $e->getMessage();
+                
             }
             if($type===false){
                 return json_encode($arr,JSON_UNESCAPED_UNICODE);
