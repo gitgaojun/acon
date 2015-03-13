@@ -15,7 +15,7 @@ $(function (){
 			$("#adPwd").focus();
 		}
 	})
-	$("#adPwd").keydown(function (event){
+	$("#adPsd").keydown(function (event){
 		if(event.which == '13'){
 			$("#adCode").focus();
 		}
@@ -32,26 +32,29 @@ $(function (){
 		//获取用户名称
 		var adName = encodeURI($("#adName").val());
 		//获取用户密码
-		var adPwd = encodeURI($("#adPwd").val());
+		var adPsd = encodeURI($("#adPsd").val());
 		//获取验证码
 		var adCode = encodeURI($("#adCode").val());
 
 		//验证用户输入长度和字符
 		if(adName.length < 6 || adName.length >20){ $("#adCodeMsg").html("用户名:6~20  字符 数字");return false;}
-		if(adPwd.length < 6 || adPwd.length > 20){ $("#adCodeMsg").html("密码:6~20  字符 数字");return false;}
+		if(adPsd.length < 6 || adPsd.length > 20){ $("#adCodeMsg").html("密码:6~20  字符 数字");return false;}
 		if(adCode.length < 4){ $("#adCodeMsg").html("验证码错误");return false;}
-
+		$("#adCodeMsg").html("");
 		//ajax提交表单
 		$.ajax({
 		 	type:"post",
 			url:'/admin/index.php/login/valiableLogin',
 			dataType:"json",//返回json格式的数据
-			data:"adName="+adName+"&adPwd="+adPwd+"&adCode="+adCode,
+			data:"adName="+adName+"&adPsd="+adPsd+"&adCode="+adCode,
 			success:function (data){
-				console.log(data);
-				//if(data.status){
-					//window.location.href="www.baidu.com";
-				//}
+				//console.log(data);
+				if(data.status){
+					window.location.href="www.baidu.com";
+					$("#adCodeMsg").html("");
+				}else{
+					$("#adCodeMsg").html(data.message);
+				}
 			},
 			error:function (XMLHttpRequest,textStatus,errorThrown){
 				alert(errorThrown)

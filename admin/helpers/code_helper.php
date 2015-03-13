@@ -23,6 +23,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 $textContent[$i]=substr($codeList,rand(0,61),1);
 
             }
+            session_start();
             $_SESSION[$codeName] = implode($textContent);
             $j=2;
             while($j>0){

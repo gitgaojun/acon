@@ -5,6 +5,7 @@
 	<title>后台登录页面</title>
 	<link rel="stylesheet" type="text/css" href="<?=$this->config->item('base_url')?>define/css/login/app.css">
 	<script type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/plus/jquery-1.11.2.js"></script>
+	
 	<script type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/login/app.js"></script>
 </head>
 <body>
@@ -13,12 +14,12 @@
 			<h5>登录后台</h5>
 		</div>
 		<div>
-			<form id="loginForm">
+			<form action="www.baidu.com" method="post">
 				<div class="adName">
 					用户名：<input type="text" id="adName" name="adName" placeholder="用户名">
 				</div>
-				<div class="adPwd">
-					密码：<input type="password" id="adPwd" name="adPwd">
+				<div class="adPsd">
+					密码：<input type="password" id="adPsd" name="adPsd">
 				</div>
 				<div class="adCode">
 					<div id="adCodeImage" class="adCodeImage"><img src="/admin/index.php/login/adCode" id='codeImage' onclick="getCodeImage();"></div>
@@ -26,7 +27,7 @@
 				</div>
 				<div id="adCodeMsg" class="adCodeMsg"></div>
 				<div class="sbt">
-					<button id="subButton">登录后台</button>
+					<button  type="button" id="subButton">登录后台</button>
 				</div>
 
 			</form>
