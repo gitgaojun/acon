@@ -39,7 +39,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $adName = empty($this->input->post('adName'))?'':addslashes(trim($this->input->post('adName')));
             $adPwd = empty($this->input->post('adPwd'))?'':addslashes(trim($this->input->post('adPwd')));
             $adCode = empty($this->input->post('adCode'))?'':addslashes(trim($this->input->post('adCode')));
-
+            
+            
+            echo 3;exit;
+            
             if($adCode !== $_SESSION['adCodeText'])
             {
                 $result['msg']="验证码错误";

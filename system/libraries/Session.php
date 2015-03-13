@@ -104,6 +104,7 @@ class CI_Session {
 
 		// Run the Session routine. If a session doesn't exist we'll
 		// create a new one.  If it does, we'll update it.
+		
 		if ( ! $this->sess_read())
 		{
 			$this->sess_create();
@@ -174,16 +175,16 @@ class CI_Session {
 			$this->sess_destroy();
 			return FALSE;
 		}
-
+echo 222;
 		// Decrypt the cookie data
 		if ($this->sess_encrypt_cookie == TRUE)
 		{
 			$session = $this->CI->encrypt->decode($session);
 		}
-
+echo 333;
 		// Unserialize the session array
 		$session = $this->_unserialize($session);
-
+echo 44;
 		// Is the session data we unserialized an array with the correct format?
 		if ( ! is_array($session) OR ! isset($session['session_id']) OR ! isset($session['ip_address']) OR ! isset($session['user_agent']) OR ! isset($session['last_activity']))
 		{
@@ -473,7 +474,7 @@ class CI_Session {
 	 * @param	string
 	 * @return	void
 	 */
-	function set_userdata($newdata = array(), $newval = '')
+	public function set_userdata($newdata = array(), $newval = '')
 	{
 		if (is_string($newdata))
 		{
@@ -738,7 +739,7 @@ class CI_Session {
 	 */
 	function _unserialize($data)
 	{
-		$data = @unserialize(strip_slashes($data));
+		$data = @unserialize(stripslashes($data));
 
 		if (is_array($data))
 		{
