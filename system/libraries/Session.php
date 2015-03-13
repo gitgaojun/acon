@@ -175,16 +175,16 @@ class CI_Session {
 			$this->sess_destroy();
 			return FALSE;
 		}
-echo 222;
+
 		// Decrypt the cookie data
 		if ($this->sess_encrypt_cookie == TRUE)
 		{
 			$session = $this->CI->encrypt->decode($session);
 		}
-echo 333;
+
 		// Unserialize the session array
 		$session = $this->_unserialize($session);
-echo 44;
+
 		// Is the session data we unserialized an array with the correct format?
 		if ( ! is_array($session) OR ! isset($session['session_id']) OR ! isset($session['ip_address']) OR ! isset($session['user_agent']) OR ! isset($session['last_activity']))
 		{
