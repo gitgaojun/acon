@@ -50,7 +50,7 @@ $(function (){
 			success:function (data){
 				//console.log(data);
 				if(data.status){
-					window.location.href="www.baidu.com";
+					window.location.href="/admin/index.php/app/index";
 					$("#adCodeMsg").html("");
 				}else{
 					$("#adCodeMsg").html(data.message);
