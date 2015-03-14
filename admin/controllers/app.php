@@ -1,7 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class app extends CI_Controller {
+class app extends MY_Controller {
 
+    function __construct(){
+        parent::__construct();
+    }
 
 
     /**
@@ -10,6 +13,18 @@ class app extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('app');
+	}
+	
+	
+	/**
+	 * 后台首页的logo
+	 */
+	public function logoImage()
+	{
+	    $this->load->helper('logo_helper');
+	    $siteName = 'acon';
+	    createLogo(300,50,$siteName);
+	    exit;
 	}
 }
 
