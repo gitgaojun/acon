@@ -5,6 +5,7 @@
      * @var VIEWFILE
      */
     define('VIEWFILE', '../www/admin/define/view/');
+    define('WEB', "http://www.acon.com");
 
 /*
  *---------------------------------------------------------------
