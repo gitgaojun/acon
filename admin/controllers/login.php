@@ -74,8 +74,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          public function loginOut()
          {
              $this->load->model('login_model');
-             $this->input->post('site') = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
-             $result = $this->login_model->adOut($this->input->post('site'));
+             $site = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
+             $result = $this->login_model->adOut($site);
              echo json($result);
              exit;
          }         
