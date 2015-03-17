@@ -37,7 +37,21 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         }
         
-        public function 
+        /**
+         * 销毁adUser的session值,如果成功那么返回true
+         * @param 前台给的识别字符正确的是admin $site
+         * @return boolean
+         */
+        public function adOut($site){
+            if($site==='admin'){
+                $adUser = $this->session->userdata("adUser");
+                $this->session->unset_userdata('adUser');
+                return $this->session->userdata("adUser")?true:false;
+                
+            }else{
+                return false;
+            }
+        }
 
 
     }

@@ -27,18 +27,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          }
 
 
-         /**
-          * 退出登录
-          */
-         public function loginOut()
-         {
-             $this->load->model('login_model');
-             $this->input->post('site') = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
-             $result = $this->login_model->adOut($this->input->post('site'));
-             echo json($result);
-             exit;
-         }
-
 
          /**
           * 验证登录信息
@@ -78,6 +66,22 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
          }
 
+
+
+         /**
+          * 退出登录
+          */
+         public function loginOut()
+         {
+             $this->load->model('login_model');
+             $this->input->post('site') = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
+             $result = $this->login_model->adOut($this->input->post('site'));
+             echo json($result);
+             exit;
+         }         
+         
+         
+         
     }
 
 

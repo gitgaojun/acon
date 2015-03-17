@@ -467,7 +467,8 @@ class CI_Session {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Add or change data in the "userdata" array
+	 * 
+	 * 添加或修改session 中的数组 userdata
 	 *
 	 * @access	public
 	 * @param	mixed
@@ -495,7 +496,7 @@ class CI_Session {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Delete a session variable from the "userdata" array
+	 * 中userdata数组中删除session变量
 	 *
 	 * @access	array
 	 * @return	void
