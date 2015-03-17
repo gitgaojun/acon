@@ -18,7 +18,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $textColor = imagecolorallocate($im,rand(0,125),rand(0,125),rand(0,125));
             
             for($i=0;$i<strlen($text);$i++){
-                imagettftext($im,rand(20,30),rand(-30,30),$i*$imageWidth/5-4,3*$imageHeight/4,$textColor,'define/font/ELEPHNT.TTF',$text[$i]);
+                imagettftext($im,rand(20,30),rand(-30,30),$i*$imageWidth/5+25,3*$imageHeight/4,$textColor,'define/font/ELEPHNT.TTF',$text[$i]);
             }
             imagepng($im);
             imagedestroy($im);

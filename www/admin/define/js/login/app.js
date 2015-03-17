@@ -57,7 +57,7 @@ $(function (){
 				}
 			},
 			error:function (XMLHttpRequest,textStatus,errorThrown){
-				alert(errorThrown)
+				console.log('XMLHttpRequest:'+XMLHttpRequest,'textStatus:'+textStatus,'errorThrown:'+errorThrown);
 			}
 		})
 	})

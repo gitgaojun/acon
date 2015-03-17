@@ -13,7 +13,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
          public function __construct() {
             parent::__construct();
-            $this->load->model('adLogin');
+            $this->load->model('login_model');
          }
 
 
@@ -27,8 +27,16 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          }
 
 
-         public function xx(){
-             echo $this->session->userdata('adCodeText');exit;
+         /**
+          * 退出登录
+          */
+         public function loginOut()
+         {
+             $this->load->model('login_model');
+             $this->input->post('site') = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
+             $result = $this->login_model->adOut($this->input->post('site'));
+             echo json($result);
+             exit;
          }
 
 
@@ -37,7 +45,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           */
          public function valiableLogin()
          {
-            $this->load->model('adLogin');
+            $this->load->model('login_model');
             $adName = empty($this->input->post('adName'))?'':addslashes(trim($this->input->post('adName')));
             $adPsd = empty($this->input->post('adPsd'))?'':addslashes(trim($this->input->post('adPsd')));
             $adCode = empty($this->input->post('adCode'))?'':addslashes(trim($this->input->post('adCode')));
@@ -47,7 +55,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 $this->result['message']="验证码错误";
                 $this->result['status'] = false;
             }else{
-                $this->result['status'] = $this->adLogin->valiableLogin($adName,$adPsd)?true:false;
+                $this->result['status'] = $this->login_model->valiableLogin($adName,$adPsd)?true:false;
                 if(!$this->result['status']) $this->result['message'] = '用户名或者密码错误';
             }
             //var_dump($this->result);

@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台首页</title>
-<link type="text/css" href="../css/app/app.css">
-<script type="text/javascript" src="../js/plus/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="../js/app/app.js"></script>
+<link type="text/css" rel="stylesheet" href="http://www.acon.com/admin/define/css/app/app.css">
+<script type="text/javascript" src="http://www.acon.com/admin/define/js/plus/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="http://www.acon.com/admin/define/js/app/app.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -18,10 +18,11 @@
 			</div>
 		</div>
 		<div class="header-right">
-			<div class="header-user">
-				<ul>
-					<li>个人信息</li>
-					<li>退出</li>
+			<div class="header-user" id="header-user">
+				<span>用户信息<icon>css</icon></span>
+				<ul class="header-ul" id="header-ul">
+					<li class="header-li"><a id="userList">个人信息</a></li>
+					<li class="header-li"><a id="loginOut">退出</a></li>
 				</ul>
 			</div>
 		</div>
