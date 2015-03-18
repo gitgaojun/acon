@@ -13,3 +13,33 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             
         }
     }
+    
+    /**
+     * 给后台使用,同时判断用户是否登录
+     * @author jun90610@gmail.com
+     * @return string/void
+     */
+    class AD_Controller extends MY_Controller
+    {
+        function __construct(){
+            parent::__construct();
+            
+            $this->validate();
+        }
+        
+        
+        public function validate()
+        {
+            $validate=empty($this->session->userdata('adUser'))?true:false;
+            if($validate)
+            {
+                echo <<<js
+			         <script>
+                        window.location.href="/admin/index.php/login";
+                    </script>
+js;
+                exit;
+            }
+        }
+    }
+    

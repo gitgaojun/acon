@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class app extends MY_Controller {
+class app extends AD_Controller {
 
     function __construct(){
         parent::__construct();
@@ -12,6 +12,10 @@ class app extends MY_Controller {
      */
 	public function index()
 	{
+	    $adUser = $this->session->userdata('adUser');//管理员信息
+	    $data['adName'] = $adUser[0]['real_name'];
+	    //var_dump($data['adUser']['real_name']);exit; 
+	    $this->load->vars($data);
 		$this->load->view('app');
 	}
 	

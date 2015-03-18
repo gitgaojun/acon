@@ -44,9 +44,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function adOut($site){
             if($site==='admin'){
-                $adUser = $this->session->userdata("adUser");
                 $this->session->unset_userdata('adUser');
-                return $this->session->userdata("adUser")?true:false;
+                return $this->session->userdata("adUser")?false:true;
                 
             }else{
                 return false;

@@ -5,8 +5,8 @@ window.onload=function(){
 	
 	
 	/* 设置头部样式  */
-	
-	$('#header-user').click(function(){
+	/* 不能用click来弄none或者出现,统一弄mouse事件才能保证不失效 */
+	$('#header-user').mouseover(function(){
 		//点击显示
 		$('#header-ul').attr('style',"display:block");
 	})
@@ -30,7 +30,8 @@ window.onload=function(){
 			dataType:"json",
 			data:'site=admin',
 			success:function(data){
-				alert(data);
+				//console.log(data);
+				alert("成功退出系统");
 				if(data.status){
 					window.location.href="/admin/index.php/login/index";
 				}
@@ -39,7 +40,7 @@ window.onload=function(){
 				console.log('XMLHttpRequest:'+XMLHttpRequest,'textStatus:'+textStatus,'errorThrown:'+errorThrown);
 			}
 		});
-	})
+	});
 	
 	
 	/* 设置头部样式end */
