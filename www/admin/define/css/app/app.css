@@ -3,8 +3,8 @@ body{
 	/* margin-top:0px; */
 	/* margin-left:0px; */
 	/* margin-right:0px; */
-	margin:0px auto;/* 上外和下外为0,左外和右外是自适应 */
-	padding-left:0px;
+	margin:0 auto;/* 上外和下外为0,左外和右外是自适应 */
+	padding-left:0;
 	font-size:12px;
 }
 a{
@@ -83,7 +83,7 @@ li{
 	float:right;
 	text-align:center;
 	width:100px;
-	height:20p;
+	height:20px;
 	line-height:50px;
 	color:rgb(178,178,178);
 	background-color:rgb(78,78,78);
@@ -97,8 +97,9 @@ li{
 	display:none;	
 	position:absolute;	/* 绝对定位的时候z-index才有效果 */
 	z-index:1;	
-	margin:0px;/* 去掉之前的空格start */
-	padding:0px;/* 去掉之前的空格end */
+	margin:0;/* 去掉之前的空格start */
+	padding:0;/* 去掉之前的空格end */
+	
 }
 .header > .header-right > .header-user > .header-ul > .header-li{
 	display:block;
