@@ -45,6 +45,15 @@ window.onload=function(){
 	
 	
 	/* 设置头部样式end */
-	
-	
+
+
+
+	/*  设置左边menu菜单栏样式  */
+	$('.left-a').click(function(){
+		$('.left-a > .left-dt').attr('style',"display:block;");
+		$(this).children(".left-dt").attr('style',"display:block;");
+
+	});
+
+	/*  设置左边menu菜单栏样式end  */
 };

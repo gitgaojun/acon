@@ -24,7 +24,7 @@ li{
 	display:block;
 	float:left;
 	width:100%;
-	height:100px;
+	height:100%;
 	background-color:rgb(255,0,255);
 }
 .header > .header-left{
@@ -124,4 +124,67 @@ li{
 	color:rgb(78,78,78);
 	background-color:rgb(178,178,178);
 	
+}
+.main > .left{
+	display:block;
+	width:200px;
+	height:100%;
+	border-right:1px solid rgb(78,78,78);
+}
+.main > .content{
+	display:block;
+	width:100%;
+
+}
+.mian > .left > .left-ul{
+	margin:0;
+	padding:0;
+}
+.main > .left > .left-ul > .left-li{
+	cursor:pointer;
+	display:block;
+	width:200px;
+	height:30px;
+	line-height:30px;
+
+}
+.main > .left > .left-ul > .left-li > .li-a{
+	display:block;
+	width:200px;
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	background-color:rgb(178,178,178);
+	color:rgb(78,78,78);
+}
+.main > .left > .left-ul > .left-li > .li-a:hover{
+	background-color:rgb(78,78,78);
+	color:rgb(178,178,178);
+}
+.left-li > .left-dt {
+	display:none;
+	margin:0;
+	padding:0;
+	width:200px;
+}
+.left-li > .left-dt > .left-dl{
+	display:block;
+	margin:0;
+	padding:0;
+	width:200px;
+	height:30px;
+	line-height:30px;
+}
+.left-li > .left-dt > .left-dl > .dl-a{
+	display:block;
+	width:200px;
+	height:30px;
+	line-height:30px;
+	padding-left:20px;
+	background-color:rgb(178,178,178);
+	color:rgb(78,78,78);
+}
+.left-li > .left-dt > .left-dl > .dl-a:hover{
+	background-color:rgb(78,78,78);
+	color:rgb(178,178,178);
 }
