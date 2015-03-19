@@ -14,6 +14,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          public function __construct() {
             parent::__construct();
             $this->load->model('login_model');
+
+             //销毁session
+            $this->session->unset_userdata('adUser');
          }
 
 
