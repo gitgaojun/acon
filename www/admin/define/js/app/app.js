@@ -49,11 +49,15 @@ window.onload=function(){
 
 
 	/*  设置左边menu菜单栏样式  */
-	$('.left-a').click(function(){
-		$('.left-a > .left-dt').attr('style',"display:block;");
-		$(this).children(".left-dt").attr('style',"display:block;");
+    /*当我们设置这样的样式的时候先把css的全部展示样式做好，再来设置隐藏，通过js来实现显示*/
 
-	});
 
 	/*  设置左边menu菜单栏样式end  */
+
+
+
+
+
+
+
 };
