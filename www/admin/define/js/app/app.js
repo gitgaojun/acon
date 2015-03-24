@@ -51,13 +51,42 @@ window.onload=function(){
 	/*  设置左边menu菜单栏样式  */
     /*当我们设置这样的样式的时候先把css的全部展示样式做好，再来设置隐藏，通过js来实现显示*/
 
+    /**
+     *  用来初始化左边菜单栏状态
+     */
+    function init_showDiv(){
+        $(".left-dt").each(function(index, domEle) {
+            //domEle == this
+            var $shower = $(domEle).attr("show");
+            if($shower == "true"){
+                $(domEle).show();
+            }else{
+                $(domEle).hide();
+            }
+        });
+    }
+    $(".left-li").click(function(){
+        var $shower = $(this).children(".left-dt").attr("show");
+        if($shower == "true"){
+            $(this).children(".left-dt").attr("show", "false");
+        }else {
+            $(this).children(".left-dt").attr("show", "true");
+        }/*
+        show 控制展开
+        */
+        init_showDiv();
+    });
 
 	/*  设置左边menu菜单栏样式end  */
 
 
 
+    /*  设置菜单栏和框架的交互 start */
+    $(".dl-a").click(function(){
+        var $attrHref = $(this).attr("attrHref");
+        $(".contentFrame").attr("src", $attrHref).ready();
+    });
 
-
-
+    /*  设置菜单栏和框架的交互 end */
 
 };

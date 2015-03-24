@@ -1,17 +1,22 @@
 @CHARSET "UTF-8";
-body{
+html,body{/* html body 同时设置的时候才能继承的设置100%的属性 */
 	/* margin-top:0px; */
 	/* margin-left:0px; */
 	/* margin-right:0px; */
-	margin:0 auto;/* 上外和下外为0,左外和右外是自适应 */
-	padding-left:0;
+	margin:0;/* 上外和下外为0,左外和右外是自适应 */
+	padding:0;
+    width:100%;
+    height:100%;
 	font-size:12px;
 }
 a{
 	text-decoration:none;
 }
 li{
-	line-style-type:none;
+    list-style-type:none;
+}
+#dis{ /* 用来定位需要显示的块 */
+    display:block;
 }
 .header{
 	display:block;
@@ -22,6 +27,7 @@ li{
 }
 .main{
 	display:block;
+    position:relative;
 	float:left;
 	width:100%;
 	height:100%;
@@ -44,7 +50,8 @@ li{
 	line-height:50px;
 }
 
-/* logo */
+/* logo*/
+
 .header > .header-left > .header-logo{
 	display:block;
 	width:300px;
@@ -95,10 +102,16 @@ li{
 }
 .header > .header-right > .header-user > .header-ul{
 	display:none;	
-	position:absolute;	/* 绝对定位的时候z-index才有效果 */
+	position:absolute;
+ /*绝对定位的时候z-index才有效果 */
+
 	z-index:1;	
-	margin:0;/* 去掉之前的空格start */
-	padding:0;/* 去掉之前的空格end */
+	margin:0;
+ /*去掉之前的空格start */
+
+	padding:0;
+ /*去掉之前的空格end */
+
 	
 }
 .header > .header-right > .header-user > .header-ul > .header-li{
@@ -117,7 +130,9 @@ li{
 	line-height:49px;
 	color:rgb(178,178,178);
 	background-color:rgb(78,78,78);
-	border-bottom:rgb(153,153,153) dashed 1px;/* 颜色对照网站http://tool.css-js.com/rgba.html */	
+	border-bottom:rgb(153,153,153) dashed 1px;
+/* 颜色对照网站http://tool.css-js.com/rgba.html*/
+
 }
 .header > .header-right > .header-user > .header-ul > .header-li > a:hover{
 	cursor:pointer;
@@ -125,12 +140,80 @@ li{
 	background-color:rgb(178,178,178);
 	
 }
+/* 先设置main的relative 绝对定位,之后里面的元素浮动就是以它为基础浮动了 user agent stylesheet div有默认的,display:block;所以div元素可以不写display:block; */
 .main > .left{
 	display:block;
-    margin:0;
-	width:200px;
+    float:left;
+	width:15%;
 	height:100%;
-	border-right:1px solid rgb(78,78,78);
+    background-color:rgb(125,125,125);
+    outline:1px solid rgb(78,78,78);
 }
 
+/* outline 轮廓,手册上面的这么解释的,不会占据空间,不一定是矩形 */
+.main > .content{
+    display:block;
+    float:left;
+    width:85%;
+    height:100%;
+    background-color:rgb(125,125,125);
+    outline:1px solid rgb(78,78,78);
+}
+/* 使用这样的形式是 .main > .content  parent_name > children_name  否则失效 */
+.li-a{
+    cursor:pointer;
+    display:block;
+    width:100%;
+    height:30px;
+    line-height:30px;
+    padding-left:10px;
+    font-size:14px;
+    background-color:rgb(78,78,78);
+    color:rgb(255,255,255);
+    border-bottom:1px solid rgb(178, 178, 178);
+    font-weight:bold;
+}
+.left-ul{/* 要想使用ul 最好去掉之前的空的地方，也就是margin  padding */
+    display:block;
+    margin:0;
+    padding:0;
+}
+.left-dt{
+    margin:0;
+    padding:0;
+    display:none;
+}
+.li-a:hover{
+    background-color:rgb(178,178,178);
+    color:rgb(78,78,78);
+}
+.left-li, .left-dt{/* 设置背景是为了动画效果的时候好看 */
+    background-color:rgb(255,255,255);/* 颜色要和里面的a标签的保持一致 */
+}
+.left-dl{
+    margin:0;
+    padding:0;
+}
+.left-dt > .left-dl > .dl-a{
+    cursor:pointer;
+    display:block;
+    width:100%;
+    height:20px;
+    line-height:20px;
+    padding-left:20px;
+    background-color:rgb(255,255,255);
+    color:rgb(0,0,0);
+}
+.left-dt > .left-dl > .dl-a:hover{
+    background-color:rgb(178,178,178);
+    color:rgb(78,78,78);
+}
+
+/* 设置框架的样式 */
+.content > .contentFrame{
+    width:100%;
+    height:100%;
+    border:0;
+
+}
 
