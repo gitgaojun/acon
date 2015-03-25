@@ -65,12 +65,12 @@ window.onload=function(){
             }
         });
     }
-    $(".left-li").click(function(){
-        var $shower = $(this).children(".left-dt").attr("show");
+    $(".li-a").click(function(){
+        var $shower = $(this).parent(".left-li").children(".left-dt").attr("show");
         if($shower == "true"){
-            $(this).children(".left-dt").attr("show", "false");
+            $(this).parent(".left-li").children(".left-dt").attr("show", "false");
         }else {
-            $(this).children(".left-dt").attr("show", "true");
+            $(this).parent(".left-li").children(".left-dt").attr("show", "true");
         }/*
         show 控制展开
         */
@@ -84,7 +84,7 @@ window.onload=function(){
     /*  设置菜单栏和框架的交互 start */
     $(".dl-a").click(function(){
         var $attrHref = $(this).attr("attrHref");
-        $(".contentFrame").attr("src", $attrHref).ready();
+        $("#contentFrame").attr("src", $attrHref).ready();
     });
 
     /*  设置菜单栏和框架的交互 end */
