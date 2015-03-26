@@ -17,6 +17,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         function __construct()
         {
             parent::__construct();
+            $this->load->model("sys/menu_model");
         }
 
         /**
