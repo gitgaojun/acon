@@ -22,7 +22,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function valiableLogin($adName,$adPsd)
         {
-            $sql = "select * from `eload_sys_admin` where `ad_name`='".$adName."' and `ad_psd`='".$adPsd."'";
+            $sql = "select * from `eload_sys_user` where `u_name`='".$adName."' and `u_pwd`='".$adPsd."'";
             $adUser = $this->db->query($sql)->result_array();
             
             if(!empty($adUser))

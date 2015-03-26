@@ -13,7 +13,7 @@ class app extends AD_Controller {
 	public function index()
 	{
 	    $adUser = $this->session->userdata('adUser');//管理员信息
-	    $data['adName'] = $adUser[0]['real_name'];
+	    $data['adName'] = $adUser[0]['u_name'];
 	    //var_dump($data['adUser']['real_name']);exit; 
 	    $this->load->vars($data);
 		$this->load->view('app');
