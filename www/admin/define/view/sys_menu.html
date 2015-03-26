@@ -2,22 +2,20 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title><?=title; ?></title>
+    <title><?=$title; ?></title>
     <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_menu/app.css">
     <script language="javascript" type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/plus/jquery-1.11.2.min.js"></script>
     <script language="javascript" type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/sys_menu/app.js"></script>
 </head>
 <body>
     <div class="header">
-
+        <h3><?=$title;?></h3>
     </div>
     <div>
-        <div><span>系统菜单列表</span></div>
         <div class="content">
-            <form id="listFrom">
-            <table>
+            <form id="listFrom" class="listFrom">
+            <table class="tabList">
                 <tr>
-                    <th><input type="checkbox">全选</th>
                     <th>ID</th>
                     <th>parentId</th>
                     <th>功能</th>
@@ -26,46 +24,19 @@
                     <th>显示</th>
                     <th></th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>系统设置</td>
-                    <td></td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><div><a>查看</a><a>修改</a><a>删除</a></div></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>系统菜单</td>
-                    <td>sys_menu/index</td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td><div><a>查看</a><a>修改</a><a>删除</a></div></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>管理员列表</td>
-                    <td>sys_admin/index</td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td><div><a>查看</a><a>修改</a><a>删除</a></div></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>4</td>
-                    <td>1</td>
-                    <td>系统用户组列表</td>
-                    <td>sys_group/index</td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td><div><a>查看</a><a>修改</a><a>删除</a></div></td>
-                </tr>
+
+                <?php foreach($menuList as $k=>$v): ?>
+                    <tr>
+                        <td><?php echo $v["m_id"]; ?></td>
+                        <td><?php echo $v["m_parent_id"]; ?></td>
+                        <td class="left"><?php echo $v["m_name"]; ?></td>
+                        <td><?php echo $v["m_url"]; ?></td>
+                        <td><?php echo $v["m_sort"]; ?></td>
+                        <td><?php echo $v["m_dis"]; ?></td>
+                        <td><div><button>查看</button><button>修改</button><button>删除</button></div></td>
+                    </tr>
+                <?php endforeach ?>
+
             </table>
             </form>
         </div>
