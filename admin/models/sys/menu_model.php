@@ -12,7 +12,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         function __construct(){
             parent::__construct();
-            $this->load->model("m_db");
+            $this->load->model("db/m_db");
         }
 
     }
