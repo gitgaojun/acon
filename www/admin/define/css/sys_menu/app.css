@@ -70,4 +70,15 @@ td{
 .left{
     text-align:left;
 }
+.layerBody{
+    display:none;
+    width:500px;
+    height:300px;
+    margin:100px auto 0;
+    padding:5px;
+}
+.layerSel{
+    display:block;
+    background-color:rgb(187,235,241);
+}
 

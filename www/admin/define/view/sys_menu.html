@@ -8,7 +8,8 @@
     <script language="javascript" type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/sys_menu/app.js"></script>
 </head>
 <body>
-    <div class="header">
+
+<div class="header">
         <h3><?=$title;?></h3>
     </div>
     <div>
@@ -33,13 +34,58 @@
                         <td><?php echo $v["m_url"]; ?></td>
                         <td><?php echo $v["m_sort"]; ?></td>
                         <td><?php echo $v["m_dis"]; ?></td>
-                        <td><div><button>查看</button><button>修改</button><button>删除</button></div></td>
+                        <td>
+                            <div>
+                                <button class="layerBtn" data="sel" attr="<?php echo $v['m_id']; ?>">查看</button>
+                                <button class="layerBtn" data="up" attr="<?php echo $v['m_id']; ?>">修改</button>
+                                <button class="layerBtn" data="del" attr="<?php echo $v['m_id']; ?>">删除</button>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach ?>
+
 
             </table>
             </form>
         </div>
+        <!--查看start-->
+        <div class="layerBody">
+            <div class="layerSel">
+                <table>
+                    <tr>
+                        <td>
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            系统设置
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            #
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--查看end-->
     </div>
 </body>
 </html>
