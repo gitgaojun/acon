@@ -15,14 +15,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $this->load->model("db/m_db");
         }
 
-        /**
-         * 查询菜单列表
-         * @param $search
+
+        /** 查询菜单列表
+         * @param string $colName 查询栏
+         * @param int $valName    查询值
          * @return mixed
          */
-        public function sel($search)
+        public function sel($colName = "")
         {
-            $sql = "select $search from `eload_sys_menu`";
+            $sql = "select $colName from `eload_sys_menu` ";
             $result = $this->db->query($sql)->result_array();
             return $result;
         }

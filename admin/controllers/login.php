@@ -49,9 +49,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 $this->result['status'] = $this->login_model->valiableLogin($adName,$adPsd)?true:false;
                 if(!$this->result['status']) $this->result['message'] = '用户名或者密码错误';
             }
-            //var_dump($this->result);
-            echo json($this->result);
-            exit;
+
+            jsonBack($this->result);
+
 
          }
 
@@ -80,8 +80,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
              $site = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
              $this->result['status'] = $this->login_model->adOut($site);
              if(!$this->result['status']){ $this->result['message'] = '退出系统失败,请联系管理员';}
-             echo json($this->result);
-             exit;
+             jsonBack($this->result);
+
          }         
          
          

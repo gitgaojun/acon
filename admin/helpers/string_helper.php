@@ -9,7 +9,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          * @param string $type
          * @throws 如果数组是空的，那么抛出一个异常
          */
-        function json($arr=[],$type=false)
+        function jsonBack($arr=[],$type=false)
         {
             try {
                 if(empty($arr)) {
@@ -26,9 +26,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 
             }
             if($type===false){
-                return json_encode($arr,JSON_UNESCAPED_UNICODE);
+                echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+                exit();
             }else{
-                return json_encode($arr,$type);
+                echo json_encode($arr,$type);
+                exit();
             }
         }
     }

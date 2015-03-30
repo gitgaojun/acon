@@ -18,6 +18,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         {
             parent::__construct();
             $this->load->model("sys/menu_model");
+            /* 封装的数据库操作 */
+            $this->load->model("db/m_db");
         }
 
         /**
@@ -30,6 +32,24 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $this->load->vars($data);
             $this->load->view("sys_menu");
 
+        }
+
+        public function sel()
+        {
+            $m_id = empty($this->input->post("paramId"))?0:intval($this->input->post("paramId"));
+
+            $this->result["data"]=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
+
+
+            if(empty($this->result["data"]))
+            {
+                $this->result["status"] = false;
+                $this->result['message'] = "获取数据失败";
+            }else{
+                $this->result["status"] = true;
+            }
+
+            jsonBack($this->result);
         }
 
 
