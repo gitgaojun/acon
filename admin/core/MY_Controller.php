@@ -24,7 +24,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     {
         function __construct(){
             parent::__construct();
-            
+
             $this->validate();
         }
         
@@ -32,6 +32,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         public function validate()
         {
             $validate=empty($this->session->userdata('adUser'))?true:false;
+
             if($validate)
             {
                 echo <<<js
