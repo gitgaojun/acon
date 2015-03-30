@@ -12,6 +12,7 @@ class app extends AD_Controller {
      */
 	public function index()
 	{
+        $data["mainView"] = "public/right";
 	    $adUser = $this->session->userdata('adUser');//管理员信息
 	    $data['adName'] = $adUser[0]['u_name'];
 	    //var_dump($data['adUser']['real_name']);exit; 

@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     $(".layerBtn").bind("click",function(){
 
-         /*弹出遮罩层样式效果start */
+        /*弹出遮罩层样式效果start */
         $topWidth = $(window.parent.document).width();//文档的宽度
         $topHeight = $(window.parent.document).height();//文档的高度
          /*iframe 定位iframe框架外面的元素 window.parent.document.getElementById("id_name") */
@@ -25,6 +25,7 @@ $(document).ready(function(){
             "z-index":"101"
         });
          /*弹出遮罩层end */
+
 
     /* ajax取数据start */
         var $modelType = $(this).attr("data");
@@ -67,12 +68,14 @@ $(document).ready(function(){
          */
         function innerLayer($data, $type){
             $layerType = "layer_"+$type;
-            //$($layerType).children("m_id").innerHTML($data.m_id);
+
             $.each($data,function(index, element){
-                $($layerType).children("."+element).innerHTML(element);
+                //$(".layer_sel span.m_id").text("1");
+                $("." + $layerType + " " +"span" + "." + index).text(element);
             });
 
-            alert($(".layerBody").contents());
+            $(".layerBody").css("display","block");
+
         }
 
         /*ajax得到的数据注入到遮盖层中去end*/

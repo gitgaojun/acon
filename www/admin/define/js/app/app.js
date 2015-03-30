@@ -1,6 +1,12 @@
 /**
  * 后台首页面js
  */
+$(function(){
+    $leftLiAX = $(".ifr-left a.li-a").width()-10;
+    $(".ifr-left a.li-a").css("width",$leftLiAX);
+    $leftDlAX = $(".ifr-left a.dl-a").width()-20;
+    $(".ifr-left a.dl-a").css("width", $leftDlAX);
+});
 
 window.onload=function(){
 	

@@ -3,102 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台首页</title>
-<link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/app/app.css">
-<script type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/plus/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/app/app.js"></script>
+<?php $this->load->view("public/head"); ?>
 </head>
 <body>
-	<div class="header">
-		<div class="header-left">
-			<div clas="header-logo">
-				<img src="/admin/index.php/app/logoImage">
-			</div>
-			<div class="header-tag">
-				
-			</div>
-		</div>
-		<div class="header-right">
-			<div class="header-user" id="header-user">
-				<span>你好:<?=$adName?></span>
-				<ul class="header-ul" id="header-ul">
-					<li class="header-li"><a class="header-li-a" id="userList">个人信息</a></li>
-					<li class="header-li"><a class="header-li-a" id="loginOut">退出</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="main">
-		<div class="left">
-			<ul class="left-ul">
-				<li class="left-li">
-					<a class="li-a">系统设置</a>
-					<dt class="left-dt" id="dis">
-						<dl class="left-dl">
-							<a class="dl-a" attrHref="/admin/index.php/sys_menu/index">系统菜单</a>
-						</dl>
-						<dl class="left-dl">
-							<a class="dl-a" attrHref="/admin/index.php/">系统角色管理</a>
-						</dl>
-						<dl class="left-dl">
-							<a class="dl-a" attrHref="/www.3.com">系统用户组管理</a>
-						</dl>
-					</dt>
-				</li>
-				<li class="left-li">
-					<a class="li-a">博客管理</a>
-					<dt class="left-dt">
-					<dl class="left-dl">
-						<a class="dl-a" attrHref="/www.4.com">
-							博客类别
-						</a>
-					</dl>
-					<dl class="left-dl">
-						<a class="dl-a" attrHref="/www.5.com">
-							文章管理
-						</a>
-					</dl>
-					</dt>
-				</li>
-				<li class="left-li">
-					<a class="li-a">博客管理</a>
-					<dt class="left-dt">
-					<dl class="left-dl">
-						<a class="dl-a" attrHref="/www.6.com">
-							博客类别
-						</a>
-					</dl>
-					<dl class="left-dl">
-						<a class="dl-a" attrHref="/www.7.com">
-							文章管理
-						</a>
-					</dl>
-					</dt>
-				</li>
-				<li class="left-li">
-					<a class="li-a">博客管理</a>
-					<dt class="left-dt">
-					<dl class="left-dl">
-						<a class="dl-a" attrHref="/www.8.com">
-							博客类别
-						</a>
-					</dl>
-					<dl class="left-dl">
-						<a class="dl-a" attrHref="/www.9.com">
-							文章管理
-						</a>
-					</dl>
-					</dt>
-				</li>
-			</ul>
-		</div>
-		<div class="content">
-        <iframe class="contentFrame" id="contentFrame" src="/www.baidu.com" ></iframe>
-		</div>
-	</div>
+    <?php $this->load->view("public/top"); ?>
+    <?php $this->load->view("public/left"); ?>
 
-    <!--遮罩层start-->
-    <div style="display:none" id="layer">
+    <div class="ifr-right">
+        <?php $this->load->view($mainView); ?>
     </div>
-    <!--遮罩层end-->
+
 </body>
 </html>
