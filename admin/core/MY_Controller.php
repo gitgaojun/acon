@@ -42,6 +42,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 js;
                 exit;
             }
+
+            $adUser = $this->session->userdata('adUser');//管理员信息
+            $data['adName'] = $adUser[0]['u_name'];
+
+
+
+            $this->load->vars($data);
+
         }
     }
     

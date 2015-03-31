@@ -1,30 +1,18 @@
 /**
  * Created by jun90610@gmail.com on 2015/3/25.
  */
+$(function(){
+    $ifr_right_span_x = $(".ifr-right > span").width() - 30;
+    $(".ifr-right > span").css("width",$ifr_right_span_x);
+});
 
 $(document).ready(function(){
 
 
-
+    /*弹出遮罩层start */
     $(".layerBtn").bind("click",function(){
-
-        /*弹出遮罩层样式效果start */
-        $topWidth = $(window.parent.document).width();//文档的宽度
-        $topHeight = $(window.parent.document).height();//文档的高度
-         /*iframe 定位iframe框架外面的元素 window.parent.document.getElementById("id_name") */
-        var $layer = window.parent.document.getElementById("layer");
-        $($layer).css({
-            "display":"block",
-            "position":"relative",
-            "width":$topWidth,
-            "height":$topHeight,
-            "background-color":"rgb(125,125,125)",
-            "filter":"alpha(opacity=50)",/* IE滤镜，透明度50%*/
-            "-moz-opacity":"0.5", /*Firefox私有，透明度50%*/
-            "opacity":"0.5",/*其他，透明度50%*/
-            "z-index":"101"
-        });
-         /*弹出遮罩层end */
+        $("#layer").css( "display","block" );
+    /*弹出遮罩层end */
 
 
     /* ajax取数据start */
@@ -74,8 +62,7 @@ $(document).ready(function(){
                 $("." + $layerType + " " +"span" + "." + index).text(element);
             });
 
-            $(".layerBody").css("display","block");
-
+            $(".layer_sel").css("display","block");
         }
 
         /*ajax得到的数据注入到遮盖层中去end*/

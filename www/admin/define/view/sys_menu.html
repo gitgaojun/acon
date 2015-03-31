@@ -1,185 +1,90 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title><?=$title; ?></title>
-    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/app/app.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
     <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_menu/app.css">
-    <script language="javascript" type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/plus/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/app/app.js"></script>
-    <script language="javascript" type="text/javascript" src="<?=$this->config->item('base_url')?>define/js/sys_menu/app.js"></script>
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_menu/app.js"></script>
 </head>
 <body>
-<div class="ifr-header">
-    <div class="header-left">
-        <div clas="header-logo">
-            <img src="/admin/index.php/app/logoImage">
-        </div>
-        <div class="header-tag">
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
 
-        </div>
-    </div>
-    <div class="header-right">
-        <div class="header-user" id="header-user">
-            <span>你好:<?=$adName?></span>
-            <ul class="header-ul" id="header-ul">
-                <li class="header-li"><a class="header-li-a" id="userList">个人信息</a></li>
-                <li class="header-li"><a class="header-li-a" id="loginOut">退出</a></li>
-            </ul>
-        </div>
+<div class="ifr-right">
+    <span>系统菜单列表</span>
+    <div class="r-table">
+        <table>
+            <tr class="r-tr" >
+                <th width="10%">ID</th>
+                <th width="10%">parentId</th>
+                <th width="10%">名字</th>
+                <th width="10%">URL</th>
+                <th width="10%">排序</th>
+                <th width="10%">显示</th>
+                <th width="10%"></th>
+            </tr>
+            <?php foreach($menuList as $k => $v): ?>
+                <tr class="r-tr" >
+                    <td><?=$v["m_id"];?></td>
+                    <td><?=$v["m_parent_id"];?></td>
+                    <td><?php if(isset($v["limb"])){ echo $v["limb"];} ?><?=$v["m_name"];?></td>
+                    <td><?=$v["m_url"];?></td>
+                    <td><?=$v["m_sort"];?></td>
+                    <td><?=$v["m_dis"];?></td>
+                    <td class="r-btn">
+                        <button type="button" class="layerBtn" attr="<?=$v['m_id']; ?>" data="sel">查看</button>
+                        <button type="button" class="layerBtn" attr="<?=$v['m_id']; ?>" data="del">删除</button>
+                    </td>
+                </tr>
+                <?php if(isset($v["child"])): ?>
+                    <?php foreach($v["child"] as $kk => $vv): ?>
+                        <tr class="r-tr">
+                            <td><?=$vv["m_id"];?></td>
+                            <td><?=$vv["m_parent_id"];?></td>
+                            <td><?php if(isset($vv["limb"])){ echo $vv["limb"]; } ?><?=$vv["m_name"];?></td>
+                            <td><?=$vv["m_url"];?></td>
+                            <td><?=$vv["m_sort"];?></td>
+                            <td><?=$vv["m_dis"];?></td>
+                            <td class="r-btn">
+                                <button type="button" class="layerBtn" attr="<?=$v['m_id']; ?>" data="sel">查看</button>
+                                <button type="button" class="layerBtn" attr="<?=$v['m_id']; ?>" data="del">删除</button>
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </table>
     </div>
 </div>
-<div class="ifr-left">
-    <div class="left">
-        <ul class="left-ul">
-            <li class="left-li">
-                <a class="li-a">系统设置</a>
-                <dt class="left-dt" id="dis">
-                <dl class="left-dl">
-                    <a class="dl-a" href="/admin/index.php/sys_menu/index">系统菜单</a>
-                </dl>
-                <dl class="left-dl">
-                    <a class="dl-a" href="/admin/index.php/">系统角色管理</a>
-                </dl>
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.3.com">系统用户组管理</a>
-                </dl>
-                </dt>
-            </li>
-            <li class="left-li">
-                <a class="li-a">博客管理</a>
-                <dt class="left-dt">
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.4.com">
-                        博客类别
-                    </a>
-                </dl>
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.5.com">
-                        文章管理
-                    </a>
-                </dl>
-                </dt>
-            </li>
-            <li class="left-li">
-                <a class="li-a">博客管理</a>
-                <dt class="left-dt">
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.6.com">
-                        博客类别
-                    </a>
-                </dl>
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.7.com">
-                        文章管理
-                    </a>
-                </dl>
-                </dt>
-            </li>
-            <li class="left-li">
-                <a class="li-a">博客管理</a>
-                <dt class="left-dt">
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.8.com">
-                        博客类别
-                    </a>
-                </dl>
-                <dl class="left-dl">
-                    <a class="dl-a" href="/www.9.com">
-                        文章管理
-                    </a>
-                </dl>
-                </dt>
-            </li>
-        </ul>
-    </div>
-    <div class="ifr-right">
-        <div class="header">
-                <h3><?=$title;?></h3>
-            </div>
-            <div>
-                <div class="content">
-                    <form id="listFrom" class="listFrom">
-                    <table class="tabList">
-                        <tr class="tabList-tr">
-                            <th class="tabList-th">ID</th>
-                            <th class="tabList-th">parentId</th>
-                            <th class="tabList-th">功能</th>
-                            <th class="tabList-th">URL</th>
-                            <th class="tabList-th">sort</th>
-                            <th class="tabList-th">显示</th>
-                            <th class="tabList-th"></th>
-                        </tr>
+<div class="layer" id="layer">
+    <div>asdasdasdfas</div>
+</div>
 
-                        <?php foreach($menuList as $k=>$v): ?>
-                            <tr class="tabList-tr">
-                                <td class="tabList-td"><?php echo $v["m_id"]; ?></td>
-                                <td class="tabList-td"><?php echo $v["m_parent_id"]; ?></td>
-                                <td class="tabList-td  left"><?php echo $v["m_name"]; ?></td>
-                                <td class="tabList-td"><?php echo $v["m_url"]; ?></td>
-                                <td class="tabList-td"><?php echo $v["m_sort"]; ?></td>
-                                <td class="tabList-td"><?php echo $v["m_dis"]; ?></td>
-                                <td class="tabList-td">
-                                    <div>
-                                        <button type="button" class="layerBtn" data="sel" attr="<?php echo $v['m_id']; ?>">查看</button>
-                                        <button type="button" class="layerBtn" data="up" attr="<?php echo $v['m_id']; ?>">修改</button>
-                                        <button type="button" class="layerBtn" data="del" attr="<?php echo $v['m_id']; ?>">删除</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-
-
-                    </table>
-                    </form>
-                </div>
-                <!--查看start-->
-                <div class="layerBody">
-                    <div class="layer_sel">
-                        <span class="layer-title">菜单详情</span>
-                        <table class="sel-tab">
-                            <tr class="sel-tr">
-                                <td class="sel-td-info">ID:</td>
-                                <td class="sel-td">
-                                    <span class="m_id">asdfasfasfasd</span>
-                                </td>
-                            </tr>
-                            <tr class="sel-tr">
-                                <td class="sel-td-info">parentId:</td>
-                                <td class="sel-td">
-                                    <span class="m_parent_id">asdfasfasfasd</span>
-                                </td>
-                            </tr>
-                            <tr class="sel-tr">
-                                <td class="sel-td-info">功能:</td>
-                                <td class="sel-td">
-                                    <span class="m_name">asdfasfasfasd</span>
-                                </td>
-                            </tr>
-                            <tr class="sel-tr">
-                                <td class="sel-td-info">URL:</td>
-                                <td class="sel-td">
-                                    <span class="m_url">asdfasfasfasd</span>
-                                </td>
-                            </tr>
-                            <tr class="sel-tr">
-                                <td class="sel-td-info">sort:</td>
-                                <td class="sel-td">
-                                    <span class="m_sort">1</span>
-                                </td>
-                            </tr>
-                            <tr class="sel-tr">
-                                <td class="sel-td-info">显示:</td>
-                                <td class="sel-td">
-                                    <span class="m_dis">2</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <!--查看end-->
-            </div>
-        </div>
-    </div>
+<!--layer sel start-->
+<div class="layer_sel">
+    <table>
+        <span>菜单详情</span>
+        <tr>
+            <td width="35%" class="right">ID:</td><td width="65%"><span class="m_id"></span></td>
+        </tr>
+        <tr>
+            <td width="35%" class="right">父类id:</td><td width="65%"><span class="m_parent_id"></span></td>
+        </tr>
+        <tr>
+            <td width="35%" class="right">描述:</td><td width="65%"><span class="m_name"></span></td>
+        </tr>
+        <tr>
+            <td width="35%" class="right">URL:</td><td width="65%"><span class="m_url"></span></td>
+        </tr>
+        <tr>
+            <td width="35%" class="right">排序:</td><td width="65%"><span class="m_sort"></span></td>
+        </tr>
+        <tr>
+            <td width="35%" class="right">显示:</td><td width="65%"><span class="m_dis"></span></td>
+        </tr>
+    </table>
+</div>
+<!--layer sel end-->
 </body>
 </html>

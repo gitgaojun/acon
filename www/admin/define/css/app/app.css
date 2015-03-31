@@ -215,6 +215,12 @@ li{
     background-color:rgb(214,219,224);
     color:rgb(0,0,0);
 }
+.ifr-right{
+    display:block;
+    float:left;
+    width:85%;
+    height:100%;
+}
 
 
 

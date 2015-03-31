@@ -87,20 +87,5 @@ window.onload=function(){
 
 
 
-    /*  设置菜单栏和框架的交互 start */
-    $(".dl-a").bind("click",function(){
-        $attrHref = $(this).attr("href");
-        $(this).removeAttr('href');
-        //document.write("<link herf='www.baidu.com'>");
-        //$(".ifr-right").append("<?php echo $this->load->view('"+ $attrHref +"'); ?>").ready();
-        $(".ifr-right").append(document.write("<link herf='www.baidu.com'>"));
-
-    });
-    /*$(".dl-a").click(function(){
-        var $attrHref = $(this).attr("attrHref");
-        $("#contentFrame").attr("src", $attrHref).ready();
-    });*/
-
-    /*  设置菜单栏和框架的交互 end */
 
 };

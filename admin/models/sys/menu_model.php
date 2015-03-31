@@ -28,6 +28,28 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $result;
         }
 
+        /**
+         * 生成菜单树形机构
+         * @param array $arr
+         * @return array
+         */
+        public function addLimb($arr = array())
+        {
+            $arrC = $arr;
+            foreach($arr as $k=>$v)
+            {
+                foreach($arrC as $kk=>$vv)
+                {
+                    if($vv['m_parent_id'] == $v['m_id'])
+                    {
+                        $vv['limb'] = "|---";
+                        $v['child'][]=$vv;
+                    }
+                }
+                if($v["m_parent_id"] == 0) $result[]=$v;
+            }unset($arrC);
 
+            return $result;
+        }
 
     }

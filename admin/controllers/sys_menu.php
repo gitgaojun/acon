@@ -28,7 +28,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         public function index()
         {
             $data['title'] = "系统菜单栏";
-            $data['menuList'] = $this->menu_model->sel("*");
+            $selList = $this->menu_model->sel("*");
+            //合成菜单的管理数组
+            $data["menuList"] = $this->menu_model->addLimb($selList);
             $this->load->vars($data);
             $this->load->view("sys_menu");
 
