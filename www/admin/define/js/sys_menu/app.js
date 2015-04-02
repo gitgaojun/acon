@@ -9,10 +9,8 @@ $(function(){
 $(document).ready(function(){
 
 
-    /*弹出遮罩层start */
+
     $(".layerBtn").bind("click",function(){
-        $("#layer").css( "display","block" );
-    /*弹出遮罩层end */
 
 
     /* ajax取数据start */
@@ -55,18 +53,49 @@ $(document).ready(function(){
          * @param $type
          */
         function innerLayer($data, $type){
-            $layerType = "layer_"+$type;
+            var $layerType = "layer_"+$type;
 
             $.each($data,function(index, element){
                 //$(".layer_sel span.m_id").text("1");
                 $("." + $layerType + " " +"span" + "." + index).text(element);
             });
+            /*给按钮添加m_id值*/
+            $(".add-btn").attr("href","/admin/index.php/sys_menu/add");
+            $(".update-btn").attr("href","/admin/index.php/sys_menu/update"+"?attr="+$data.m_id);
+            $(".ifr-right").html($(".layer_sel").html());
 
-            $(".layer_sel").css("display","block");
+            $($(".layer_sel").html(""));
         }
 
         /*ajax得到的数据注入到遮盖层中去end*/
 
+    });
+
+    $(".delBtn").bind( "click", function(){
+        var $isPar = $(this).attr("isPar");
+        var $conStr = $isPar < 1?"主菜单回导致下面的菜单无发显示,确认删除?":"确认删除?";
+        var $isDel = confirm($conStr);
+        var $attr = $(".delBtn").attr("attr");
+        if($isDel == true)
+        {
+            $.ajax({
+                type:"post",
+                url:"/admin/index.php/sys_menu/del",
+                dataType:"json",
+                data:"attr="+$attr,
+                success:function(data){
+                    if(data.status){
+                        window.location.href="/admin/index.php/sys_menu/index";
+                    }
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown){
+                    console.log('XMLHttpRequest:'+XMLHttpRequest);
+                    console.log('textStatus:'+textStatus);
+                    console.log('errorThrown:'+errorThrown);
+                }
+
+            });
+        }
     });
 
 });

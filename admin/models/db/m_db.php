@@ -27,5 +27,52 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $result;
         }
 
+        /**
+         * 数据写入函数
+         * @param string $tableName 表名
+         * @param array $list 键、值对
+         * @return bool
+         */
+        public function autoWrite($tableName = "", $list = array())
+        {
+
+            if(empty($list)){return false;}
+
+            $list = $this->slashesArr($list);
+
+            $keyStr = implode(",", array_keys($list));
+            $valStr = implode(",", array_values($list));
+
+            $sql = "insert into " . $tableName . " (" . $keyStr . ") " . " values ". " ( " . $valStr . " ) ";
+
+            $result = $this->db->query($sql);
+            return $result;
+        }
+
+        /**
+         * 转义入库数据
+         * @param $list array
+         * @return mixed array
+         */
+        protected function slashesArr(&$list)
+        {
+            foreach($list as $k => $v)
+            {
+                $listArr["`" . addslashes($k) . "`"] = "'" . addslashes($v) . "'";
+                if(is_array($v)){
+                    $this->slashesArr($v);
+                }
+            }
+            return $listArr;
+        }
+
+
+        public function delete($name="", $str="" )
+        {
+            $sql = "delete from " . $name . " " . " where " . $str;
+            $result = $this->db->query($sql);
+            return $result;
+        }
+
 
     }

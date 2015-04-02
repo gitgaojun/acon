@@ -1,15 +1,35 @@
 /**
  * 后台首页面js
  */
+
 $(function(){
     $leftLiAX = $(".ifr-left a.li-a").width()-10;
     $(".ifr-left a.li-a").css("width",$leftLiAX);
     $leftDlAX = $(".ifr-left a.dl-a").width()-20;
     $(".ifr-left a.dl-a").css("width", $leftDlAX);
+  /*  function pageHeight(){
+        return document.body.scrollHeight;
+    }
+    function pageWidth(){
+        return document.body.scrollWidth;
+    }
+    function showLayer(){
+        $(".layer").height(pageHeight());
+        $(".layer").width(pageWidth());
+        $(".layer").css("display","block");
+
+    }
+    function hideLayer(){
+        $(".layer").fadeOut(200);
+    }
+    hideLayer();*/
+
+
+
 });
 
 window.onload=function(){
-	
+
 	
 	/* 设置头部样式  */
 	/* 不能用click来弄none或者出现,统一弄mouse事件才能保证不失效 */

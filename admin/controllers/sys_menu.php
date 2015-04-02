@@ -36,6 +36,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         }
 
+
+        /**
+         * 详情
+         */
         public function sel()
         {
             $m_id = empty($this->input->post("paramId"))?0:intval($this->input->post("paramId"));
@@ -54,6 +58,78 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             jsonBack($this->result);
         }
 
+        /**
+         * 添加菜单页面
+         */
+        public function add()
+        {
+            $data['title'] = "添加菜单";
+            $parentList = $this->m_db->getAll("eload_sys_menu"," `m_parent_id`='0'");
+            if(in_array("0", $parentList)) $data['parentList'][0] = $parentList;
+            $this->load->vars($data);
+            $this->load->view("sys_menu_add");
+        }
+
+        /**
+         * 添加菜单数据到库
+         */
+        public function into()
+        {
+            $list["m_parent_id"] = empty($this->input->post("m_parent_id"))?0:intval($this->input->post("m_parent_id"));
+            $list["m_name"] = empty($this->input->post("m_name"))?'':trim($this->input->post("m_name"));
+            $list["m_url"] = empty($this->input->post("m_url"))?'':trim($this->input->post("m_url"));
+            $list["m_sort"] = empty($this->input->post("m_sort"))?0:intval($this->input->post("m_sort"));
+            $list["m_dis"] = empty($this->input->post("m_dis"))?0:intval($this->input->post("m_dis"));
+
+            if($list["m_name"] == '' )
+            {
+                $this->result["status"] = false;
+                $this->result["message"] = "名字为空";
+                jsonBack($this->result);
+            }
+            if($list["m_url"] == "" )
+            {
+                $this->result["status"] = false;
+                $this->result["message"] = "链接为空";
+                jsonBack($this->result);
+            }
+
+            $result = $this->menu_model->addColumnVal("eload_sys_menu", $list);
+            if(is_string($result) || $result != "true")
+            {
+                $this->result["status"] = false;
+                $this->result["message"] = $result;
+
+            }
+            jsonBack($this->result);
+        }
+
+        public function del()
+        {
+            $m_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
+
+            if($m_id < 0)
+            {
+                $this->result["status"] = false;
+                $this->result["message"] = "不存在该条数据";
+                jsonBack($this->result);
+            }
+
+            $this->result["status"] = $this->m_db->delete("eload_sys_menu", "m_id=".$m_id);
+
+            jsonBack($this->result);
 
 
+
+        }
+
+        public function update()
+        {
+            $data['title'] = "修改菜单";
+            $m_id = empty($this->input->get("attr"))?0:intval($this->input->get("attr"));
+            $data["list"]=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
+
+            $this->load->vars($data);
+            $this->load->view("sys_menu_update");
+        }
     }
