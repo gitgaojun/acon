@@ -50,6 +50,32 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         }
 
         /**
+         * 更新数据
+         * @param string $tableName
+         * @param array $list
+         * @param string $str
+         * @return bool
+         */
+        public function autoUp($tableName = "", $list=array(), $str = "")
+        {
+            if(empty($list)){return false;}
+
+            $list = $this->slashesArr($list);
+            $listStr = '';
+            foreach($list as $k=>$v)
+            {
+                $listStr .= $k . "=" . $v . ",";
+            }
+            $listStr = substr($listStr, 0, -1);
+
+            $sql = "update " . $tableName . " set " . $listStr . " where " . $str;
+
+            $result = $this->db->query($sql);
+            return $result;
+
+        }
+
+        /**
          * 转义入库数据
          * @param $list array
          * @return mixed array
@@ -67,6 +93,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         }
 
 
+        /**
+         * 删除数据
+         * @param string $name
+         * @param string $str
+         * @return mixed
+         */
         public function delete($name="", $str="" )
         {
             $sql = "delete from " . $name . " " . " where " . $str;

@@ -23,22 +23,26 @@ $(document).ready(function(){
         }
 
         if($(".isSub").val()){
-            $("#sub-a").ajaxStart(function(){
-                $("#msg").css("color","grey").show().html("正在请求数据...");
-            });
-            $("#sub-a").ajaxStop(function(){
-                $("#msg").css("color","grey").html("正在请求数据...").hide(3000);
-            });
+            var $isSub = confirm("提交修改?");
+            if(!$isSub){
+                return false;
+            }
+
+            var $oldTime = new Date();
+            var $startTime = $oldTime.getTime();
             var $mId = $(".mId").val();
             $.ajax({
                 type:"post",
                 url:"/admin/index.php/sys_menu/flush",
                 dataType:"json",
-                data:$addFormData+"&m_id="+$mId ,
+                data:$addFormData+"&attr="+$mId ,
                 success:function (data){
+                    var $newTime = new Date();
+                    var $endTime = $newTime.getTime();
+                    var $showTime = ($endTime-$startTime)/1000;
                     if(data.status){
 
-                        $("#msg").addClass("red").show().html("修改成功");
+                        $("#msg").addClass("red").show().html("修改成功."+"用时:"+$showTime+"s");
 
                     }else{
                         $("#msg").addClass("red").show().html(data.message);

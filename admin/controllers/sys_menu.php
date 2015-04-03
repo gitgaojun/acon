@@ -129,7 +129,32 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $m_id = empty($this->input->get("attr"))?0:intval($this->input->get("attr"));
             $data["list"]=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
 
+
             $this->load->vars($data);
             $this->load->view("sys_menu_update");
+        }
+
+
+        public function flush()
+        {
+            $m_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
+
+            $isMid = $this->menu_model->isMid($m_id);
+            if($isMid)
+            {
+                $this->result["status"] = false;
+                $this->result["message"] = "非法请求";//不存在的数据
+            }
+
+            $list["m_parent_id"] = empty($this->input->post("m_parent_id"))?0:intval($this->input->post("m_parent_id"));
+            $list["m_name"] = empty($this->input->post("m_name"))?'':trim($this->input->post("m_name"));
+            $list["m_url"] = empty($this->input->post("m_url"))?'':trim($this->input->post("m_url"));
+            $list["m_sort"] = empty($this->input->post("m_sort"))?0:intval($this->input->post("m_sort"));
+            $list["m_dis"] = empty($this->input->post("m_dis"))?0:intval($this->input->post("m_dis"));
+            $this->result["status"]= $this->m_db->autoUp("eload_sys_menu", $list, "m_id=".$m_id);
+
+            jsonBack($this->result);
+
+
         }
     }

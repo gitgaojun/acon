@@ -48,8 +48,8 @@
                                 <td><?=$vv["m_sort"];?></td>
                                 <td><?=$vv["m_dis"];?></td>
                                 <td class="r-btn">
-                                    <button type="button" class="layerBtn" attr="<?=$v['m_id']; ?>" data="sel">查看</button>
-                                    <button type="button" class="layerBtn" attr="<?=$v['m_id']; ?>" data="del" isPar="<?php if($v['m_parent_id'] < 1){echo 1;}else{echo 0;} ?>">删除</button>
+                                    <button type="button" class="layerBtn" attr="<?=$vv['m_id']; ?>" data="sel">查看</button>
+                                    <button type="button" class="layerBtn" attr="<?=$vv['m_id']; ?>" data="del" isPar="<?php if($v['m_parent_id'] < 1){echo 1;}else{echo 0;} ?>">删除</button>
                                 </td>
                             </tr>
                         <?php endforeach;?>
