@@ -94,7 +94,7 @@ class CI_Unit_test {
 		if (in_array($expected, array('is_object', 'is_string', 'is_bool', 'is_true', 'is_false', 'is_int', 'is_numeric', 'is_float', 'is_double', 'is_array', 'is_null'), TRUE))
 		{
 			$expected = str_replace('is_float', 'is_double', $expected);
-			$result = ($expected($test)) ? TRUE : FALSE;
+			$result = (expected($test)) ? TRUE : FALSE;
 			$extype = str_replace(array('true', 'false'), 'bool', str_replace('is_', '', $expected));
 		}
 		else
