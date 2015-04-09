@@ -37,7 +37,7 @@ $(function (){
 		var adCode = encodeURI($("#adCode").val());
 
 		//验证用户输入长度和字符
-		if(adName.length < 6 || adName.length >20){ $("#adCodeMsg").html("用户名:6~20  字符 数字");return false;}
+		if(adName.length < 1 || adName.length >20){ $("#adCodeMsg").html("用户名:1~20  字符 数字");return false;}
 		if(adPsd.length < 6 || adPsd.length > 20){ $("#adCodeMsg").html("密码:6~20  字符 数字");return false;}
 		if(adCode.length < 4){ $("#adCodeMsg").html("验证码错误");return false;}
 		$("#adCodeMsg").html("");
@@ -54,6 +54,8 @@ $(function (){
 					$("#adCodeMsg").html("");
 				}else{
 					$("#adCodeMsg").html(data.message);
+                    //错误的同时刷新验证码
+                    getCodeImage();
 				}
 			},
 			error:function (XMLHttpRequest,textStatus,errorThrown){

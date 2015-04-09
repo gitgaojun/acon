@@ -24,11 +24,18 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         {
             $sql = "select * from `eload_sys_user` where `u_name`='".$adName."' and `u_pwd`='".$adPsd."'";
             $adUser = $this->db->query($sql)->result_array();
-            
+
             if(!empty($adUser))
             {
                 //初始化后台用户信息
                 $this->session->set_userdata("adUser", $adUser);
+
+                //更新用户信息
+                if(!$this->updateUser($adName))
+                {
+                    return false;
+                }
+
                 return true;
             }else{
                 return false;
@@ -42,7 +49,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          * @param 前台给的识别字符正确的是admin $site
          * @return boolean
          */
-        public function adOut($site){
+        public function adOut($site)
+        {
             if($site==='admin'){
                 $this->session->unset_userdata('adUser');
                 return $this->session->userdata("adUser")?false:true;
@@ -52,5 +60,17 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             }
         }
 
+
+        protected function updateUser($u_name = '')
+        {
+            $lastTime = date("Y-m-d H:i:s");
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $lastTime = addslashes($lastTime);
+            $ip = addslashes($ip);
+
+            $sql = "update `eload_sys_user` set `u_lasttime`='".$lastTime."', `u_ip`='".$ip."', `u_count`=`u_count`+1  where `u_name`='" .$u_name . "'";
+            $status= $this->db->query($sql);
+            return $status;
+        }
 
     }

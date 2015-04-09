@@ -28,6 +28,23 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         }
 
         /**
+         * 获取指定栏的查询信息
+         * @param string $tableName
+         * @param string $whereStr
+         * @param string $colName
+         * @return mixed
+         */
+        public function getOne($tableName = "", $whereStr = "1=1", $colName = "*")
+        {
+            $sql = "SELECT " . $colName  . " FROM " . $tableName . " WHERE " . $whereStr;
+            $result = $this->db->query($sql)->result_array();
+            if(count($result) == 1){
+                return $result[0];
+            }
+            return $result;
+        }
+
+        /**
          * 数据写入函数
          * @param string $tableName 表名
          * @param array $list 键、值对

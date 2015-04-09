@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_group/app.css">
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_group/sel.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_group/app.js"></script>
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_group/sel.js"></script>
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+
+<div class="ifr-right">
+    <span>系统权限组详情</span>
+    <div class="sel">
+        <form id="selForm">
+            <table id="sel-tb">
+                <tr>
+                    <td>系统组名称
+                        <input type="hidden" value="<?=$list['g_id'];?>" name="g_id">
+                    </td>
+                    <td><input type="text" id="g_name" name="g_name" value="<?=$list['g_name'];   ?>"><b class="u_name_err">*</b></td>
+                </tr>
+                <tr>
+                    <td>系统组备注</td>
+                    <td>
+                        <textarea rows="10" id="g_desc" name="g_desc" cols="80"><?=$list["g_desc"]; ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>系统组权限  <input type="checkbox" id="all">all</td>
+                    <td>
+                        <table id="check-tab">
+                            <?php foreach($menuList as $k=>$v):;?>
+
+                            <tr>
+                                <td class="tdP">
+                                    <?=$v["m_name"];?>
+                                </td>
+                                <td>
+                                    <input type="checkbox" <?php if(in_array($v["m_url"]."-sel", $powerArr)){ echo "checked='checked'";} ?> name="<?=$v['m_url'];?>-sel">查看
+                                </td>
+                                <td>
+                                    <input type="checkbox" <?php if(in_array($v["m_url"]."-add", $powerArr)){ echo "checked='checked'";} ?> name="<?=$v['m_url'];?>-add">添加
+                                </td>
+                                <td>
+                                    <input type="checkbox" <?php if(in_array($v["m_url"]."-del", $powerArr)){ echo "checked='checked'";} ?> name="<?=$v['m_url'];?>-del">删除
+                                </td>
+                            </tr>
+                            <?php endforeach;?>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div class="sel-btn">
+                <a class="a-btn" href="/admin/index.php/sys_group/index">返回用户组列表</a>
+                <a class="a-btn" href="/admin/index.php/sys_group/add">添加</a>
+                <a class="a-btn update-btn" attr="/admin/index.php/sys_group/insert">修改</a><span id="msg"></span>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_menu/update.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_user/update.js"></script>
+
+
+
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+<div class="ifr-right">
+    <span>修改用户信息</span>
+    <div class="add">
+        <form id="addForm">
+            <table class="add-tab">
+                <tr class="add-tr">
+                    <td class="right">所属系统分组:</td>
+                    <td>
+                        <select name="u_group_id" id="u_group_id">
+                            <?php foreach($groupList as $k => $v): ?>
+                            <option value="<?=$v['g_id']; ?>"><?=$v['g_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select><b>*</b>
+                    </td>
+                </tr>
+                <tr class="add-tr">
+                    <td class="right">名字:</td>
+                    <td>
+                        <input type="text" value="<?=$list['u_name']; ?>" name="u_name" id="u_name" class="u_name"><b class="u_name_err">*</b>
+                    </td>
+                </tr>
+                <tr class="add-tr">
+                    <td class="right">全名:</td>
+                    <td>
+                        <input type="text" value="<?=$list['u_relname']; ?>" name="u_relname" id="u_relname" class="u_relname"><b class="u_relname_err">*</b>
+                    </td>
+                </tr>
+                <tr class="add-tr">
+                    <td class="right">密码:</td>
+                    <td>
+                        <input type="password" name="u_pwd" id="u_pwd" class="u_pwd"><b class="u_pwd_err">不修改请保存为空</b>
+                    </td>
+                </tr>
+            </table>
+            <div class="add-btn">
+                <input type="hidden" value="1" class="isSub">
+                <input type="hidden" value="<?=$list['u_id'];?>" class="mId">
+                <a class="a-btn" id="sub-a">提交修改</a><span id="msg"></span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

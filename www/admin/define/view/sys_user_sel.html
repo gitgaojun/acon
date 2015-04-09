@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_user/app.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_user/app.js"></script>
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+
+<div class="ifr-right">
+    <span>用户详情</span>
+    <div class="r-table">
+        <table>
+            <tr class="sel-tr">
+                <td width="200" class="right">名字</td><td width="65%"><span class="u_name"><?=$list["u_name"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">全名</td><td width="65%"><span class="u_relname"><?=$list["u_relname"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">ip</td><td width="65%"><span class="u_relname"><?=$list["u_ip"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">添加时间</td><td width="65%"><span class="u_relname"><?=$list["u_addtime"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">登录时间</td><td width="65%"><span class="u_relname"><?=$list["u_lasttime"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">登录次数</td><td width="65%"><span class="u_relname"><?=$list["u_count"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">所属系统组</td><td width="65%"><span class="u_group_id"><?=$list["u_group_id"]; ?></span></td>
+            </tr>
+        </table>
+        <div class="sel-btn">
+            <a class="a-btn" href="/admin/index.php/sys_user/index">返回用户列表</a>
+            <a class="a-btn add-btn" href="/admin/index.php/sys_user/add">添加</a>
+            <a class="a-btn update-btn" href="/admin/index.php/sys_user/update?attr=<?=$list['u_id'];?>">修改</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

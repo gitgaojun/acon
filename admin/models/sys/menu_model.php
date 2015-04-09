@@ -81,14 +81,17 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $result;
         }
 
-        public function flush()
+
+        /**
+         * 检查数据的正确性
+         * @param $mId
+         * @return bool
+         */
+        public function isMid($mId)
         {
-            $m_id = empty($this->input->post("m_id"))?0:intval($this->input->post("m_id"));
-            $list["m_parent_id"] = empty($this->input->post("m_parent_id"))?0:intval($this->input->post("m_parent_id"));
-            $list["m_name"] = empty($this->input->post("m_name"))?'':trim($this->input->post("m_name"));
-            $list["m_url"] = empty($this->input->post("m_url"))?'':trim($this->input->post("m_url"));
-            $list["m_sort"] = empty($this->input->post("m_sort"))?0:intval($this->input->post("m_sort"));
-            $list["m_dis"] = empty($this->input->post("m_dis"))?0:intval($this->input->post("m_dis"));
-            $this->m_db->autoWrite("eload_sys_menu", $list, "m_id=".$m_id);
+            $List = $this->m_db->getAll("eload_sys_menu", "m_id=".$mId);
+            $result = empty($List)?false:true;
+            return $result;
         }
+
     }
