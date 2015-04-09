@@ -24,7 +24,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     {
         function __construct(){
             parent::__construct();
-
+            $this->load->helper("comm_helper");
             $this->validate();
         }
         

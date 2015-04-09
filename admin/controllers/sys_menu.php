@@ -27,6 +27,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function index()
         {
+            P("sys_menu/index-sel");
             $data['title'] = "系统菜单栏";
             $selList = $this->menu_model->sel("*");
             //合成菜单的管理数组
@@ -42,6 +43,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function sel()
         {
+            P("sys_menu/index-sel");
             $m_id = empty($this->input->post("paramId"))?0:intval($this->input->post("paramId"));
 
             $this->result["data"]=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
@@ -63,6 +65,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function add()
         {
+            P("sys_menu/index-add");
             $data['title'] = "添加菜单";
             $parentList = $this->m_db->getAll("eload_sys_menu"," `m_parent_id`='0'");
             if(in_array("0", $parentList)) $data['parentList'][0] = $parentList;
@@ -75,6 +78,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function into()
         {
+
             $list["m_parent_id"] = empty($this->input->post("m_parent_id"))?0:intval($this->input->post("m_parent_id"));
             $list["m_name"] = empty($this->input->post("m_name"))?'':trim($this->input->post("m_name"));
             $list["m_url"] = empty($this->input->post("m_url"))?'':trim($this->input->post("m_url"));

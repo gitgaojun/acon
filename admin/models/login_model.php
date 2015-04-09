@@ -29,12 +29,22 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             {
                 //初始化后台用户信息
                 $this->session->set_userdata("adUser", $adUser);
+                //用户所在系统分组
+                session_start();
+                $_SESSION["powerId"] = $adUser[0]["u_group_id"];
 
                 //更新用户信息
                 if(!$this->updateUser($adName))
                 {
                     return false;
                 }
+
+                /**
+                 * 登录成功的时候检查缓存文件，没有就重写
+                 */
+                $this->load->helper("sys_helper");
+                createSysCache();
+
 
                 return true;
             }else{
@@ -53,6 +63,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         {
             if($site==='admin'){
                 $this->session->unset_userdata('adUser');
+                session_start();
+                unset($_SESSION["powerId"]);//销毁系统组信息
                 return $this->session->userdata("adUser")?false:true;
                 
             }else{
