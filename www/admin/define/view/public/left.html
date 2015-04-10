@@ -1,19 +1,19 @@
 <div class="ifr-left">
     <ul class="left-ul">
-        <li class="left-li">
-            <a class="li-a">系统设置</a>
-            <dt class="left-dt" id="dis">
-            <dl class="left-dl">
-                <a class="dl-a" href="/admin/index.php/sys_menu/index">后台菜单</a>
-            </dl>
-            <dl class="left-dl">
-                <a class="dl-a" href="/admin/index.php/sys_user/index">用户列表</a>
-            </dl>
-            <dl class="left-dl">
-                <a class="dl-a" href="/admin/index.php/sys_group/index">用户组列表</a>
-            </dl>
-            </dt>
-        </li>
+        <?php foreach($sysMenuList as $k => $v): ?>
+            <li class="left-li">
+                <a class="li-a"><?=$v["m_name"];?></a>
+                <dt class="left-dt" id="dis">
+                    <?php foreach($v["child"] as $kk => $vv): ?>
+
+                        <dl class="left-dl">
+                            <a class="dl-a" href="/admin/index.php/<?=$vv['m_url'];?>"><?=$vv["m_name"];?></a>
+                        </dl>
+                    <?php endforeach; ?>
+                </dt>
+            </li>
+        <?php endforeach; ?>
+
         <li class="left-li">
             <a class="li-a">博客管理</a>
             <dt class="left-dt">

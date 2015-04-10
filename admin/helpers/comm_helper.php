@@ -48,3 +48,58 @@ js;
 
         }
     }
+
+
+    if( !function_exists("getSysMenuList"))
+    {
+        /**
+         * 计算出登录用户可视的目录数组
+         * @return array
+         */
+        function getSysMenuList()
+        {
+            global $sysCacheName;
+            include($sysCacheName["sys_menu"]);
+            $arr = $result;unset($result);
+            include($sysCacheName["sys_group"]);
+            $gArr = $result;unset($result);
+            session_start();
+            $groupId = $_SESSION["powerId"];
+
+            $arrC = $arr;
+
+            $powerList = "";
+            foreach($gArr as $k => $v)
+            {
+                if(intval($v['g_id']) === intval($groupId) )
+                {
+                    $powerList = $v["g_power"];
+                }
+            }
+            $powerArr = explode(";", $powerList);
+            //var_dump($powerArr,$powerParam);exit;
+            //$resultGroup = in_array($powerParam, $powerArr);
+
+            foreach($arr as $k=>$v)
+            {
+                foreach($arrC as $kk=>$vv)
+                {
+                    if($vv['m_parent_id'] == $v['m_id'])
+                    {
+                        if(in_array($vv["m_url"]."-sel", $powerArr))
+                        {
+                            $v['child'][]=$vv;
+                        }
+
+                    }
+                }
+                if( ($v["m_parent_id"] == 0) && (isset($v["child"])) )
+                {
+                    $result[]=$v;
+                }
+            }unset($arrC);
+            //var_dump($result);exit;
+            return $result;
+
+        }
+    }

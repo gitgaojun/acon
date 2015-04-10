@@ -22,19 +22,19 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
      */
     class AD_Controller extends MY_Controller
     {
-        function __construct(){
+        function __construct()
+        {
             parent::__construct();
             $this->load->helper("comm_helper");
             $this->validate();
         }
-        
-        
+
+
         public function validate()
         {
-            $validate=empty($this->session->userdata('adUser'))?true:false;
+            $validate = empty($this->session->userdata('adUser')) ? true : false;
 
-            if($validate)
-            {
+            if ($validate) {
                 echo <<<js
 			         <script>
                         window.location.href="/admin/index.php/login";
@@ -46,10 +46,14 @@ js;
             $adUser = $this->session->userdata('adUser');//管理员信息
             $data['adName'] = $adUser[0]['u_name'];
 
-
+            /**
+             * 系统菜单列表
+             */
+            $data["sysMenuList"] = getSysMenuList();
 
             $this->load->vars($data);
 
         }
+
+
     }
-    
