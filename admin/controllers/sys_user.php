@@ -27,6 +27,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function index()
         {
+            P("sys_user/index-sel");
             $data["title"] = "后台用户列表";
             $list = $this->m_db->getAll("eload_sys_user");
             if(isset($list[0]))
@@ -47,6 +48,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function sel()
         {
+            P("sys_user/index-sel");
             $data["title"] = "用户信息";
             $attr = empty($this->input->get("attr")) ? 0 : intval($this->input->get("attr"));
             if($attr < 1)
@@ -66,6 +68,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function add()
         {
+            P("sys_user/index-add");
             $data['title'] = "添加新用户";
             $groupList = $this->m_db->getOne("eload_sys_group", "1=1", "g_id,g_name");
             if(!isset($groupList[0]))
@@ -83,6 +86,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function into()
         {
+            P("sys_user/index-add");
             $list["u_name"] = empty($this->input->post("u_name"))?"":trim($this->input->post("u_name"));
             $list["u_relname"] = empty($this->input->post("u_relname"))?"":trim($this->input->post("u_relname"));
             $list["u_pwd"] = empty($this->input->post("u_pwd"))?"":trim($this->input->post("u_pwd"));
@@ -130,6 +134,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function update()
         {
+            P("sys_user/index-add");
             $data['title'] = "修改用户信息";
             $groupList = $this->m_db->getOne("eload_sys_group", "1=1", "g_id,g_name");
             if(!isset($groupList[0]))
@@ -151,6 +156,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function flush()
         {
+            P("sys_user/index-add");
             $u_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
 
             $isUid = $this->user_model->isUid($u_id);
@@ -177,6 +183,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function del()
         {
+            P("sys_user/index-del");
             $u_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
 
             if($u_id < 0)

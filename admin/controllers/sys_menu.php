@@ -78,7 +78,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function into()
         {
-
+            P("sys_menu/index-add");
             $list["m_parent_id"] = empty($this->input->post("m_parent_id"))?0:intval($this->input->post("m_parent_id"));
             $list["m_name"] = empty($this->input->post("m_name"))?'':trim($this->input->post("m_name"));
             $list["m_url"] = empty($this->input->post("m_url"))?'':trim($this->input->post("m_url"));
@@ -110,6 +110,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         public function del()
         {
+            P("sys_menu/index-del");
             $m_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
 
             if($m_id < 0)
@@ -129,6 +130,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         public function update()
         {
+            P("sys_menu/index-add");
             $data['title'] = "修改菜单";
             $m_id = empty($this->input->get("attr"))?0:intval($this->input->get("attr"));
             $data["list"]=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
@@ -141,6 +143,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         public function flush()
         {
+            P("sys_menu/index-add");
             $m_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
 
             $isMid = $this->menu_model->isMid($m_id);

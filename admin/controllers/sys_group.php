@@ -19,6 +19,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         public function index()
         {
+            P("sys_group/index-sel");
             $data["title"] = "系统用户组列表";
 
             $list = $this->m_db->getAll("eload_sys_group");
@@ -38,6 +39,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function sel()
         {
+            P("sys_group/index-sel");
             $data["title"] = "用户组信息";
             $attr = empty($this->input->get("attr")) ? 0 : intval($this->input->get("attr"));
             if($attr < 1)
@@ -63,6 +65,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function insert()
         {
+            P("sys_group/index-add");
             $g_id = empty($this->input->post("g_id"))?0:intval($this->input->post("g_id"));
             $list["g_name"] = empty($this->input->post("g_name"))?"":addslashes(trim($this->input->post("g_name")));
             $list["g_desc"] = empty($this->input->post("g_desc"))?"":addslashes(trim($this->input->post("g_desc")));
@@ -98,6 +101,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function add()
         {
+            P("sys_group/index-add");
             $data["title"] = "添加系统组成员";
             $data["menuList"] = $this->m_db->getAll("eload_sys_menu","m_parent_id<>0");
             $this->load->vars($data);
@@ -109,6 +113,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function into()
         {
+            P("sys_group/index-add");
             $list["g_name"] = empty($this->input->post("g_name"))?"":addslashes(trim($this->input->post("g_name")));
             $list["g_desc"] = empty($this->input->post("g_desc"))?"":addslashes(trim($this->input->post("g_desc")));
             unset($_POST["g_id"],$_POST["g_name"],$_POST["g_desc"]);
@@ -144,6 +149,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function del()
         {
+            P("sys_group/index-del");
             $g_id = empty($this->input->post("attr"))?0:intval($this->input->post("attr"));
 
             if($g_id < 0)
