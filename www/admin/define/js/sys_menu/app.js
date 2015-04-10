@@ -2,7 +2,7 @@
  * Created by jun90610@gmail.com on 2015/3/25.
  */
 $(function(){
-    $ifr_right_span_x = $(".ifr-right > span").width() - 30;
+    $ifr_right_span_x = $(".ifr-right > span").width();
     $(".ifr-right > span").css("width",$ifr_right_span_x);
 });
 

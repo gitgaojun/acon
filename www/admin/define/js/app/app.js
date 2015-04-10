@@ -2,31 +2,59 @@
  * 后台首页面js
  */
 
+
+/*
+ function gets()
+ {
+ var s ="网页可见区域宽："+ document.body.clientWidth;
+ s += "<br>网页可见区域高：" + document.body.clientHeight;
+ s += "<br>网页可见区域宽：" + document.body.offsetWidth +" (包括边线的宽)";
+ s += "<br>网页可见区域高：" + document.body.offsetHeight +" (包括边线的宽)";
+ s += "<br>网页正文全文宽：" + document.body.scrollWidth;
+ s += "<br>网页正文全文高：" + document.body.scrollHeight;
+ s += "<br>网页被卷去的高：" + document.body.scrollTop;
+ s += "<br>网页被卷去的左：" + document.body.scrollLeft;
+ s += "<br>网页正文部分上：" + window.screenTop;
+ s += "<br>网页正文部分左：" + window.screenLeft;
+ s += "<br>屏幕分辨率的宽：" + window.screen.width;
+ s += "<br>屏幕分辨率的高：" + window.screen.height;
+ s += "<br>屏幕可用工作区宽度：" + window.screen.availWidth;
+ s += "<br>屏幕可用工作区高度：" + window.screen.availHeight;
+ document.getElementById('dd').innerHTML = s;
+ }
+
+
+* */
 $(function(){
     $leftLiAX = $(".ifr-left a.li-a").width()-10;
     $(".ifr-left a.li-a").css("width",$leftLiAX);
     $leftDlAX = $(".ifr-left a.dl-a").width()-20;
     $(".ifr-left a.dl-a").css("width", $leftDlAX);
-  /*  function pageHeight(){
-        return document.body.scrollHeight;
-    }
-    function pageWidth(){
-        return document.body.scrollWidth;
-    }
-    function showLayer(){
-        $(".layer").height(pageHeight());
-        $(".layer").width(pageWidth());
-        $(".layer").css("display","block");
 
-    }
-    function hideLayer(){
-        $(".layer").fadeOut(200);
-    }
-    hideLayer();*/
-
-
+    init_resizeDiv();//开始的时候要2次更新尺寸
+    $(".ifr-left").height(document.body.clientHeight-$(".ifr-header").height());
+    $(".ifr-right").height(document.body.clientHeight-$(".ifr-header").height());
+    $(".ifr-right").width(document.body.clientWidth-$(".ifr-left").width());
+    $(".ifr-right > span").width($(".ifr-right").width()-30);
 
 });
+
+/**
+ * 初始化设置页面div尺寸跟随浏览器改变
+ */
+function init_resizeDiv(){
+
+    $(".ifr-right").width(document.body.clientWidth-$(".ifr-left").width());
+    $(".ifr-left").height(document.body.clientHeight-$(".ifr-header").height());
+    $(".ifr-right").height(document.body.clientHeight-$(".ifr-header").height());
+    $(".ifr-right > span").width($(".ifr-right").width()-30);
+}
+
+//当浏览器的大小改变的时候触发重新计算大小
+window.onresize = function() {
+    //history.go(0);
+    init_resizeDiv();
+}
 
 window.onload=function(){
 
@@ -41,7 +69,7 @@ window.onload=function(){
 		$('.header-li').attr('style',"background-color:rgb(178,178,178);color:rgb(78,78,78);");
 	});
 	//移出隐藏
-	$('#header-ul').mouseout(function(){
+	$('#header-user').mouseout(function(){
 		$('#header-ul').attr('style',"display:none");
 	});
 	//用户信息

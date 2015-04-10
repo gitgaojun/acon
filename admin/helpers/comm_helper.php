@@ -16,7 +16,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         function P( $powerParam ){
             global $sysCacheName;
-            session_start();
+            //session_start();
             //用户所属系统组
 
             $groupId = $_SESSION["powerId"];

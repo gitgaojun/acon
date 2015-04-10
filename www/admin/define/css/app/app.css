@@ -140,7 +140,7 @@ li{
 	line-height:49px;
 	color:rgb(0,0,0);
 	background-color:rgb(255,255,255);
-	border-bottom:rgb(153,153,153) dashed 1px;
+	outline:rgb(153,153,153) dashed 1px;
 /* 颜色对照网站http://tool.css-js.com/rgba.html*/
 
 }
@@ -154,8 +154,7 @@ li{
 .ifr-left {
 	display:block;
     float:left;
-	width:15%;
-	height:100%;
+	width:200px;
     background-color:rgb(238,241,242);
     outline:1px solid rgb(0,0,0);
 }
@@ -221,8 +220,6 @@ li{
 .ifr-right{
     display:block;
     float:left;
-    width:85%;
-    height:100%;
 }
 
 .ifr-right > span {
