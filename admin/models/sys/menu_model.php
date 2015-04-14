@@ -61,7 +61,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         public function addColumnVal($name="", $list = array())
         {
             $m_name = $list["m_name"];
-            $result = $this->db->query("select m_name from $name where m_name=$m_name")->result_array();
+            $result = $this->db->query("select m_name from $name where m_name='".$m_name."'")->result_array();
             if(!empty($result))
             {
                 foreach($result as $k=>$v)

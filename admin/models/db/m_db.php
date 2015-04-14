@@ -17,13 +17,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          * @return mixed
          *
          */
-        public function getAll($tableName = "", $whereStr = "1=1")
+        public function getAll($tableName = "", $whereStr = "1=1", $order = "", $desc = "")
         {
-            $sql = "SELECT * FROM " . $tableName . " WHERE " . $whereStr;
+
+            $whereStr = $orderStr = "";
+            $whereStr = $whereStr == ""?"":(" where " . $whereStr);
+            $orderStr = $order == ""?"":("order by $order $desc");
+            $sql = "SELECT * FROM " . $tableName . $whereStr ." " . $orderStr;
             $result = $this->db->query($sql)->result_array();
-            if(count($result) == 1){
-                return $result[0];
-            }
+
             return $result;
         }
 

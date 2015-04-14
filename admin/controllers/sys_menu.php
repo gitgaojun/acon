@@ -44,20 +44,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         public function sel()
         {
             P("sys_menu/index-sel");
-            $m_id = empty($this->input->post("paramId"))?0:intval($this->input->post("paramId"));
+            $m_id = empty($this->input->get("paramId"))?0:intval($this->input->get("paramId"));
 
-            $this->result["data"]=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
+            $list=$this->m_db->getAll("eload_sys_menu", "m_id=".$m_id);
+            $data["list"] = $list["0"];
+            //var_dump($data["list"]);exit;
 
+            $this->load->vars($data);
+            $this->load->view("sys_menu_sel");
 
-            if(empty($this->result["data"]))
-            {
-                $this->result["status"] = false;
-                $this->result['message'] = "获取数据失败";
-            }else{
-                $this->result["status"] = true;
-            }
-
-            jsonBack($this->result);
         }
 
         /**
@@ -68,7 +63,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             P("sys_menu/index-add");
             $data['title'] = "添加菜单";
             $parentList = $this->m_db->getAll("eload_sys_menu"," `m_parent_id`='0'");
-            if(in_array("0", $parentList)) $data['parentList'][0] = $parentList;
+            $data['parentList'] = $parentList;
+            if(!isset($parentList['0'])){
+                $data['parentList'][0] = $parentList;
+            }
+            //var_dump($data['parentList']);exit;
             $this->load->vars($data);
             $this->load->view("sys_menu_add");
         }
@@ -104,6 +103,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 $this->result["status"] = false;
                 $this->result["message"] = $result;
 
+            }else{
+                //同步更新缓存文件
+                $this->load->helper("sys_helper");
+                global $sysCacheName;
+                createMenuListFile($sysCacheName["sys_menu"]);
             }
             jsonBack($this->result);
         }

@@ -32,10 +32,11 @@ $(function(){
     $(".ifr-left a.dl-a").css("width", $leftDlAX);
 
     init_resizeDiv();//开始的时候要2次更新尺寸
+    $(".ifr-right").width(document.body.clientWidth-$(".ifr-left").width());
     $(".ifr-left").height(document.body.clientHeight-$(".ifr-header").height());
     $(".ifr-right").height(document.body.clientHeight-$(".ifr-header").height());
-    $(".ifr-right").width(document.body.clientWidth-$(".ifr-left").width());
     $(".ifr-right > span").width($(".ifr-right").width()-30);
+
 
 });
 

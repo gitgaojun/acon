@@ -48,11 +48,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 return ;
             }
 
-            $data["menuList"] = $this->m_db->getAll("eload_sys_menu","m_parent_id<>0");
+            $menuList = $this->m_db->getAll("eload_sys_menu","m_parent_id<>0");
+
+            $data["menuList"] = $menuList;
 
             //var_dump($data["menuList"]);exit;
 
-            $data['list'] = $this->m_db->getAll("eload_sys_group", "g_id=".$attr );
+            $list = $this->m_db->getAll("eload_sys_group", "g_id=".$attr );
+            $data["list"] = $list["0"];
             $data["powerArr"] = explode(";", $data["list"]["g_power"]);
 
             $this->load->vars($data);
@@ -92,6 +95,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             }
 
             $this->result["status"]= $this->m_db->autoUp("eload_sys_group", $list, "g_id=".$g_id);
+
+            if($this->result["status"])
+            {
+                //更新缓存的系统组数据信息
+                $this->load->helper("sys_helper");
+                global $sysCacheName;
+                createGroupListFile($sysCacheName["sys_group"]);
+            }
 
             jsonBack($this->result);
         }

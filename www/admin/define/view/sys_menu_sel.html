@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/sys_menu/app.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_menu/app.js"></script>
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_menu/sel.js"></script>
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+
+<div class="ifr-right">
+    <span>菜单详情</span>
+    <div class="sel">
+        <table class="sel-table">
+
+            <tr class="sel-tr">
+                <td width="200" class="right">ID:</td><td width="65%"><span class="m_id"><?=$list['m_id'];?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="35%" class="right">父类id:</td><td width="65%"><span class="m_parent_id"><?=$list['m_parent_id'];?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="35%" class="right">描述:</td><td width="65%"><span class="m_name"><?=$list['m_name'];?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="35%" class="right">URL:</td><td width="65%"><span class="m_url"><?=$list['m_url'];?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="35%" class="right">排序:</td><td width="65%"><span class="m_sort"><?=$list['m_sort'];?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="35%" class="right">显示:</td><td width="65%"><span class="m_dis"><?=$list['m_dis'];?></span></td>
+            </tr>
+        </table>
+        <div class="sel-btn">
+            <a class="a-btn" href="/admin/index.php/sys_menu/index">返回菜单列表</a>
+            <a class="a-btn add-btn" href="/admin/index.php/sys_menu/add">添加</a>
+            <a class="a-btn update-btn" href="/admin/index.php/sys_menu/upd">修改</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

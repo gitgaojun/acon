@@ -60,7 +60,7 @@ js;
         {
             global $sysCacheName;
             include($sysCacheName["sys_menu"]);
-            $arr = $result;unset($result);
+            $arr = $result;unset($result);//var_dump($arr);exit;
             include($sysCacheName["sys_group"]);
             $gArr = $result;unset($result);
             session_start();
