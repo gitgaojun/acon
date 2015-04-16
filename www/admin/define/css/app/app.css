@@ -219,7 +219,7 @@ li{
 }
 .ifr-right{
     display:block;
-    float:left;
+    float:right;
 }
 
 .ifr-right > span {

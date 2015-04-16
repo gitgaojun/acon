@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/blog_category/app.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/blog_category/app.js"></script>
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+
+<div class="ifr-right">
+    <span>分类详情</span>
+    <div class="r-table">
+        <table>
+            <tr class="sel-tr">
+                <td width="200" class="right">名字</td><td width="65%"><span class="c_name"><?=$list["c_name"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="200" class="right">时间</td><td width="65%"><span class="c_time"><?=$list["c_time"]; ?></span></td>
+            </tr>
+        </table>
+        <div class="sel-btn">
+            <a class="a-btn" href="/admin/index.php/blog_category/index">返回博客分类列表</a>
+            <a class="a-btn add-btn" href="/admin/index.php/blog_category/add">添加</a>
+            <a class="a-btn update-btn" href="/admin/index.php/blog_category/update?attr=<?=$list['c_id'];?>">修改</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

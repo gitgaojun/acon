@@ -19,9 +19,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function getAll($tableName = "", $whereStr = "1=1", $order = "", $desc = "")
         {
-
-            $whereStr = $orderStr = "";
-            $whereStr = $whereStr == ""?"":(" where " . $whereStr);
+            $whereStr = ($whereStr == "")?"":(" where " . $whereStr);
             $orderStr = $order == ""?"":("order by $order $desc");
             $sql = "SELECT * FROM " . $tableName . $whereStr ." " . $orderStr;
             $result = $this->db->query($sql)->result_array();

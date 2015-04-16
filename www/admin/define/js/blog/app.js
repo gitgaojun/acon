@@ -1,27 +1,29 @@
 /**
- * Created by jun90610@gmail.com on 2015/4/8.
+ * Created by jun90610@gmail.com on 2015/4/16.
  */
+
 
 $(document).ready(function(){
     $(".layerBtn").bind("click", function(){
         var $dataType = $(this).attr("data");
         var $attr = $(this).attr("attr");
-        window.location.href="/admin/index.php/sys_group/"+$dataType+"?attr="+$attr;
+        window.location.href="/admin/index.php/blog/"+$dataType+"?attr="+$attr;
     });
+
     $(".delBtn").bind("click", function(){
         var $isPar = $(this).attr("isPar");
-        var $isDel = confirm("删除会导致改组下成员不能登录是否删除?");
+        var $isDel = confirm("确认删除?");
         var $attr = $(this).attr("attr");
         if($isDel == true)
         {
             $.ajax({
                 type:"post",
-                url:"/admin/index.php/sys_group/del",
+                url:"/admin/index.php/blog/del",
                 dataType:"json",
                 data:"attr="+$attr,
                 success:function(data){
                     if(data.status){
-                        window.location.href="/admin/index.php/sys_group/index";
+                        window.location.href="/admin/index.php/blog/index";
                     }
                 },
                 error:function (XMLHttpRequest,textStatus,errorThrown){

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/blog/app.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/sys_user/app.js"></script>
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+
+<div class="ifr-right">
+    <span>博客详情</span>
+    <div class="r-table">
+        <table>
+            <tr class="sel-tr">
+                <td width="98%"><span class="b_title"><?=$list["b_title"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="98%"><span class="b_category_id"><?=$list["b_category_id"]; ?><?=$list["b_time"]; ?></span></td>
+            </tr>
+            <tr class="sel-tr">
+                <td width="98%"><span class="b_content"><?=$list["b_content"]; ?></span></td>
+            </tr>
+        </table>
+        <div class="sel-btn">
+            <a class="a-btn" href="/admin/index.php/blog/index">返回博客列表</a>
+            <a class="a-btn add-btn" href="/admin/index.php/blog/add">添加</a>
+            <a class="a-btn update-btn" href="/admin/index.php/blog/update?attr=<?=$list['b_id'];?>">修改</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

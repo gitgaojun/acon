@@ -12,7 +12,7 @@ $(document).ready(function(){
     $(".delBtn").bind("click", function(){
         var $isPar = $(this).attr("isPar");
         var $isDel = confirm("确认删除?");
-        var $attr = $(".delBtn").attr("attr");
+        var $attr = $(this).attr("attr");
         if($isDel == true)
         {
             $.ajax({

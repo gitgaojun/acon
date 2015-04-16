@@ -49,6 +49,21 @@ function init_resizeDiv(){
     $(".ifr-left").height(document.body.clientHeight-$(".ifr-header").height());
     $(".ifr-right").height(document.body.clientHeight-$(".ifr-header").height());
     $(".ifr-right > span").width($(".ifr-right").width()-30);
+
+
+}
+
+
+window.onscroll = function(){
+    var $scrollTop = document.body.scrollTop;
+    var $leftHeight = document.body.clientHeight;
+    if( $scrollTop > 50 )
+    {
+
+        $(".ifr-left").css({"position":"fixed","margin-top":"0px","height":$leftHeight});
+    }else{
+        $(".ifr-left").css({"position":"relative"});
+    }
 }
 
 //当浏览器的大小改变的时候触发重新计算大小

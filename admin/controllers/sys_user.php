@@ -57,7 +57,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 return ;
             }
 
-            $data['list'] = $this->m_db->getAll("eload_sys_user", "u_id=".$attr );
+            $list = $this->m_db->getAll("eload_sys_user", "u_id=".$attr );
+            $data['list'] = $list[0];
 
             $this->load->vars($data);
             $this->load->view("sys_user_sel");

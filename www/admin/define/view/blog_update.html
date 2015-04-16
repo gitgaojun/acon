@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/blog/update.css">
+    <script type="text/javascript" language="javascript" src="<?=$this->config->item('base_url')?>define/js/blog/update.js"></script>
+
+
+
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+<div class="ifr-right">
+    <span>修改博客信息</span>
+    <div class="add">
+        <form id="addForm">
+            <table class="add-tab">
+                <tr class="add-tr">
+                    <td class="right">所属博客分组:</td>
+                    <td>
+                        <select name="b_category_id" id="b_category_id">
+                            <?php foreach($categoryList as $k => $v): ?>
+                            <option value="<?=$v['c_id']; ?>"><?=$v['c_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select><b>*</b>
+                    </td>
+                </tr>
+                <tr class="add-tr">
+                    <td class="right">标题:</td>
+                    <td>
+                        <input type="text" value="<?=$list['b_title']; ?>" name="b_title" id="b_title" class="b_title"><b class="b_title_err">*</b>
+                    </td>
+                </tr>
+                <tr class="add-tr">
+                    <td class="right">正文:</td>
+                    <td>
+                        <textarea rows="10" cols="100" name="b_content"><?=$list['b_content']; ?></textarea>
+                        <b class="b_content_err">*</b>
+                    </td>
+                </tr>
+            </table>
+            <div class="add-btn">
+                <input type="hidden" value="1" class="isSub">
+                <input type="hidden" value="<?=$list['b_id'];?>" class="bId">
+                <a class="a-btn" id="sub-a">提交修改</a><span id="msg"></span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

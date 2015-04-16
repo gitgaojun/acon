@@ -32,7 +32,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             if($list["u_name"])
             {
                 $isUname = $this->m_db->getOne("eload_sys_user","u_name='".$list["u_name"]."'","count(*)");
-                if($isUname > 1)
+                if(intval($isUname["count(*)"]) > 1)
                 {
                     return "重名了";
                 }

@@ -1,5 +1,5 @@
 <?php 
-//2015-04-13 15:09:29
+//2015-04-16 09:29:21
 $result=array (
   0 => 
   array (
@@ -52,6 +52,33 @@ $result=array (
     'm_parent_id' => '7',
     'm_name' => '操作日志',
     'm_url' => 'operation_log/index',
+    'm_sort' => '0',
+    'm_dis' => '1',
+  ),
+  6 => 
+  array (
+    'm_id' => '9',
+    'm_parent_id' => '0',
+    'm_name' => '博客',
+    'm_url' => '#',
+    'm_sort' => '0',
+    'm_dis' => '1',
+  ),
+  7 => 
+  array (
+    'm_id' => '10',
+    'm_parent_id' => '9',
+    'm_name' => '博客分类',
+    'm_url' => 'blog_category/index',
+    'm_sort' => '0',
+    'm_dis' => '1',
+  ),
+  8 => 
+  array (
+    'm_id' => '11',
+    'm_parent_id' => '9',
+    'm_name' => '博客发布',
+    'm_url' => 'blog/index',
     'm_sort' => '0',
     'm_dis' => '1',
   ),
