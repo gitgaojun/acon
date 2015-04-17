@@ -63,5 +63,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $result;
         }
 
+        function getUser($uId)
+        {
+            $sql = "select u.u_relname, u.u_name, g.g_name, u.u_addtime, u.u_lasttime, u.u_count from eload_sys_user as u inner join eload_sys_group as g on u.u_group_id=g.g_id".
+                " where u_id='".$uId."' ";
+            $list = $this->db->query($sql)->result_array();
+            $result = $list[0];
+            return $result;
+        }
+
 
     }

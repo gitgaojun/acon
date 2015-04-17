@@ -32,6 +32,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 //用户所在系统分组
                 session_start();
                 $_SESSION["powerId"] = $adUser[0]["u_group_id"];
+                $_SESSION["u_name"] = $adUser[0]["u_name"];
 
                 //更新用户信息
                 if(!$this->updateUser($adName))

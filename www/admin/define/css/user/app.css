@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.li-div{
+    display:block;
+    height:20px;
+    line-height: inherit;
+    float:left;
+}
+.li-div > span{
+    display:block;
+    margin:5px;
+    padding:10px;
+    background-color: #99CCFF;
+}

@@ -14,6 +14,9 @@
 
 <div class="ifr-right">
     <span>后台操作日志列表</span>
+    <div class="search">
+
+    </div>
     <div class="r-table">
         <table>
             <tr class="r-tr" >
@@ -21,7 +24,6 @@
                 <th width="10%">时间</th>
                 <th width="10%">分类</th>
                 <th width="10%">描述</th>
-                <th width="10%"></th>
             </tr>
             <?php foreach($list as $k => $v): ?>
             <tr class="r-tr" >
@@ -29,12 +31,6 @@
                 <td><?=$v["l_time"];?></td>
                 <td><?=$v["l_type"];?></td>
                 <td><?=$v["l_info"];?></td>
-                <td class="r-btn">
-                    <button type="button" class="layerBtn" attr="<?=$v['g_id']; ?>" data="sel">详情</button>
-                    <?php if(1 != 1): ?>
-                    <button type="button" class="delBtn" attr="<?=$v['g_id']; ?>" data="del">删除</button>
-                    <?php endif;?>
-                </td>
             </tr>
             <?php endforeach; ?>
         </table>

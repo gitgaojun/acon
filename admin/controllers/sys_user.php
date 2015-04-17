@@ -145,8 +145,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
                 $data["groupList"] = $groupList;
             }
             $u_id = empty($this->input->get("attr"))?0:intval($this->input->get("attr"));
-            $data["list"]=$this->m_db->getAll("eload_sys_user", "u_id=".$u_id);
-
+            $list=$this->m_db->getAll("eload_sys_user", "u_id=".$u_id);
+            $data["list"] = $list[0];
 
             $this->load->vars($data);
             $this->load->view("sys_user_update");

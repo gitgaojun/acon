@@ -50,7 +50,7 @@ $(function (){
 			success:function (data){
 				//console.log(data);
 				if(data.status){
-					window.location.href="/admin/index.php/app/index";
+					window.location.href="/admin/index.php/user/index";
 					$("#adCodeMsg").html("");
 				}else{
 					$("#adCodeMsg").html(data.message);

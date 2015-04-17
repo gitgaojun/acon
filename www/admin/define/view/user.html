@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?=$title;?></title>
+    <?php $this->load->view("public/head"); ?>
+    <link type="text/css" rel="stylesheet" href="<?=$this->config->item('base_url')?>define/css/user/app.css">
+
+</head>
+<body>
+<?php $this->load->view("public/top"); ?>
+<?php $this->load->view("public/left"); ?>
+
+<div class="ifr-right">
+    <span>个人信息</span>
+    <div class="r-table">
+        <div class="li-div">
+            <span>系统组:</span>
+            <span><?=$userList["g_name"];?></span>
+        </div>
+        <div class="li-div">
+            <span>创建时间:</span>
+            <span><?=$userList["u_addtime"];?></span>
+        </div>
+        <div class="li-div">
+            <span>最后一次登录:</span>
+            <span><?=$userList["u_lasttime"];?></span>
+        </div>
+        <div class="li-div">
+            <span>用户名:</span>
+            <span><?=$userList["u_name"];?></span>
+        </div>
+        <div class="li-div">
+            <span>全名:</span>
+            <span><?=$userList["u_relname"];?></span>
+        </div>
+        <div class="li-div">
+            <span>总登录次数:</span>
+            <span><?=$userList["u_count"];?></span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -77,9 +77,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          public function loginOut()
          {
              $this->load->model('login_model');
+             $this->load->helper("comm_helper");
              $site = empty($this->input->post('site'))?'':addslashes(trim($this->input->post('site')));
              $this->result['status'] = $this->login_model->adOut($site);
              if(!$this->result['status']){ $this->result['message'] = '退出系统失败,请联系管理员';}
+             writeLog("退出系统");
              jsonBack($this->result);
 
          }         

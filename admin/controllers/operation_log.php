@@ -24,8 +24,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          */
         public function index()
         {
+            P("operation_log/index-sel");
             $data["title"] = "系统操作日志";
             $data["list"] = $this->log_model->getList();
+
             $this->load->vars($data);
             $this->load->view("operation_log");
         }

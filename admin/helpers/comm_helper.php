@@ -134,3 +134,29 @@ js;
             return $str;
         }
     }
+
+
+    if(!function_exists("writeLog"))
+    {
+        /**
+         * 日常操作日志
+         * @param string $l_info
+         */
+        function writeLog($l_info="")
+        {
+            $list["l_info"] = addslashes(trim($l_info));
+            $list["l_type"] = "日常操作";
+            $list["l_user"] = $_SESSION["u_name"];
+            $list["l_time"] = date("Y-m-d H:i:s", time());
+            include(APPPATH . "config/database.php");
+
+            $link = mysqli_connect($db['acon']['hostname'],$db['acon']['username'],$db['acon']['password'],$db['acon']['database'])
+            or die('mysql error:' . mysqli_errno());
+            mysqli_query($link, 'set names utf8');
+
+            $sql = 'insert into eload_sys_log (`l_time`, `l_user` , `l_type` , `l_info`) values("'.$list["l_time"].'" , "'.$list["l_user"].'", "'.$list["l_type"].'", "'.$list["l_info"].'")';
+
+            mysqli_query($link, "$sql");
+
+        }
+    }

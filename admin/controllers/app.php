@@ -15,7 +15,8 @@ class app extends AD_Controller {
         $data["mainView"] = "public/right";
 	    $adUser = $this->session->userdata('adUser');//管理员信息
 	    $data['adName'] = $adUser[0]['u_name'];
-	    //var_dump($data['adUser']['real_name']);exit; 
+	    //var_dump($data['adUser']['real_name']);exit;
+        writeLog("登录后台首页");
 	    $this->load->vars($data);
 		$this->load->view('app');
 	}

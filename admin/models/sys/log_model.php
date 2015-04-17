@@ -18,7 +18,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
         function getList()
         {
-            $list = $this->m_db->getAll("eload_sys_log","","l_id");
+            $list = $this->m_db->getAll("eload_sys_log","","l_time desc");
             return $list;
         }
     }
