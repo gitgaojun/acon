@@ -121,6 +121,19 @@ window.onload=function(){
 	/*  设置左边menu菜单栏样式  */
     /*当我们设置这样的样式的时候先把css的全部展示样式做好，再来设置隐藏，通过js来实现显示*/
 
+    //当前的是把每个页面都独立显示出来的，那么树菜单的显示就用当前的url来判断
+    $uri = window.location.href;
+    $(".left-dt").hide();
+    $(".dl-a").each(function(index,domEle){
+
+        if( $uri.indexOf($(domEle).attr("href")) > 0 ){console.log($(domEle).parent(".left-dl").parent(".left-dt").html());
+            $(domEle).parent(".left-dl").parent(".left-dt").show();
+        }
+
+        //if($(this).attr("href"))
+    })
+
+
     /**
      *  用来初始化左边菜单栏状态
      */
@@ -135,7 +148,9 @@ window.onload=function(){
             }
         });
     }
+
     $(".li-a").click(function(){
+
         var $shower = $(this).parent(".left-li").children(".left-dt").attr("show");
         if($shower == "true"){
             $(this).parent(".left-li").children(".left-dt").attr("show", "false");
