@@ -45,24 +45,24 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'acon';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '123456';
-$db['default']['database'] = 'acon';
-$db['default']['dbdriver'] = 'mysqli';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+$db['acon']['hostname'] = '127.0.0.1';
+$db['acon']['username'] = 'root';
+$db['acon']['password'] = '123456';
+$db['acon']['database'] = 'acon';
+$db['acon']['dbdriver'] = 'mysqli';
+$db['acon']['dbprefix'] = '';
+$db['acon']['pconnect'] = TRUE;
+$db['acon']['db_debug'] = TRUE;
+$db['acon']['cache_on'] = FALSE;
+$db['acon']['cachedir'] = '';
+$db['acon']['char_set'] = 'utf8';
+$db['acon']['dbcollat'] = 'utf8_general_ci';
+$db['acon']['swap_pre'] = '';
+$db['acon']['autoinit'] = TRUE;
+$db['acon']['stricton'] = FALSE;
 
 
 /* End of file database.php */

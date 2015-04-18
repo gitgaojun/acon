@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title><?=$b_title?></title>
+    <link type="text/css" rel="stylesheet" href="/define/css/app/app.css">
+    <link type="text/css" rel="stylesheet" href="/define/css/details/app.css">
+    <script type="text/javascript" src="/define/js/details/app.js"></script>
+</head>
+<body>
+    <?php $this->load->view("public/header");?>
+    <div id="main" class="main">
+        <div class="h-title">
+            <h1><?=$blogList['b_title'];?></h1>
+        </div>
+        <div class="h-info">
+            <span>时间：<?=$blogList['b_time'];?>&nbsp;&nbsp;&nbsp;&nbsp;类别：<?=$blogList['c_name'];?></span>
+        </div>
+        <div class="h-text">
+            <span><?=$blogList['b_content'];?></span>
+        </div>
+    </div>
+
+</body>
+</html>

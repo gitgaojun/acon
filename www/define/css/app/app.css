@@ -10,11 +10,13 @@ html,body{/* html body 同时设置的时候才能继承的设置100%的属性 *
     font-size:12px;
     font-family:Arial, Helvetica, sans-serif,宋体;
 }
-.bodyer{
-    display:block;
-    margin:0 auto;
-    winth:900px;
+body{
+    background-image:url('../../image/background/1.jpg');/* 设置背景图片 */
 }
+a{
+    text-decoration:none;
+}
+
 .header{
     display:block;
     width:900px;
@@ -22,6 +24,7 @@ html,body{/* html body 同时设置的时候才能继承的设置100%的属性 *
     margin:0 auto;
     line-height: 50px;
     background-color:gray;
+    margin-bottom:30px;
 
 }
 .header > a{
@@ -37,15 +40,38 @@ html,body{/* html body 同时设置的时候才能继承的设置100%的属性 *
 
 }
 .header > a:hover{
+    cursor: pointer;
     font-weight: bold;
     background-color: #77BC71;
     color:white;
 }
+
 .main{
     width:900px;
     margin:0 auto;
+    margin-top:10px;
+
 }
 .main-title{
     width:900px;
 
 }
+
+
+
+.b_title{
+    font-size:18px;
+    height:30px;
+    font-weight: bold;
+    color:#000000;
+}
+
+.b_title:hover,.b_content:hover{
+    cursor: pointer;
+    text-decoration:underline;
+    color:rgb(25,25,25);
+}
+.b_content{
+    color:#000000;
+}
+

@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "app";
 $route['404_override'] = '';
+//$route["details/([0-9]+)"] = "details/index/kkk_$1";
 
 
 /* End of file routes.php */

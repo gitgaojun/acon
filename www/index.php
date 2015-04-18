@@ -183,6 +183,7 @@ if (defined('ENVIRONMENT'))
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
 
+
 	// The path to the "application" folder
 	if (is_dir($application_folder))
 	{
@@ -206,6 +207,7 @@ if (defined('ENVIRONMENT'))
  * And away we go...
  *
  */
+
 require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */

@@ -108,6 +108,8 @@ class CI_Router {
 		// since URI segments are more search-engine friendly, but they can optionally be used.
 		// If this feature is enabled, we will gather the directory/class/method a little differently
 		$segments = array();
+
+        //开启 a=xxx&c=xxx 的时候用的
 		if ($this->config->item('enable_query_strings') === TRUE AND isset($_GET[$this->config->item('controller_trigger')]))
 		{
 			if (isset($_GET[$this->config->item('directory_trigger')]))

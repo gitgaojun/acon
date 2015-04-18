@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class app extends CI_Controller {
+class app extends MY_Controller {
 
     function __construct()
     {
         parent::__construct();
         $this->load->model("blog_model");
+        $this->load->helper("comm_helper");
     }
 
     /**
@@ -13,9 +14,13 @@ class app extends CI_Controller {
      */
 	public function index()
 	{
-        $data['cateList'] = $this->blog_model->getCateList();
-
-
+        $c_id = empty($this->input->get("c"))?0:intval($this->input->get("c"));
+        $blogList = $this->blog_model->getBlogList($c_id);
+        foreach($blogList as $k=>$v)
+        {
+            $blogList[$k]["b_content"] = mSubStr($v["b_content"], 50)."......";
+        }
+        $data["blogList"] = $blogList;
         $this->load->vars($data);
 		$this->load->view('app');
 	}
