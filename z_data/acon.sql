@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2015-04-20 09:50:05
+Date: 2015-04-17 15:13:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
-  `b_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `b_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `b_title` varchar(100) NOT NULL COMMENT '标题',
   `b_category_id` int(11) NOT NULL COMMENT '分类id',
   `b_content` text NOT NULL COMMENT '正文',
@@ -38,7 +38,7 @@ INSERT INTO `blog` VALUES ('1', '2222', '1', '复反反复复反反复复反反�
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-  `c_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `c_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `c_name` varchar(20) NOT NULL,
   `c_time` datetime NOT NULL,
   PRIMARY KEY (`c_id`)
@@ -55,7 +55,7 @@ INSERT INTO `category` VALUES ('2', 'mysql', '2015-04-14 15:01:40');
 -- ----------------------------
 DROP TABLE IF EXISTS `eload_sys_group`;
 CREATE TABLE `eload_sys_group` (
-  `g_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `g_id` tinyint(10) unsigned NOT NULL AUTO_INCREMENT,
   `g_name` varchar(50) NOT NULL,
   `g_power` text NOT NULL,
   `g_desc` varchar(100) NOT NULL,
@@ -72,7 +72,7 @@ INSERT INTO `eload_sys_group` VALUES ('1', '站长', 'sys_menu/index-sel;sys_men
 -- ----------------------------
 DROP TABLE IF EXISTS `eload_sys_log`;
 CREATE TABLE `eload_sys_log` (
-  `l_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `l_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `l_time` datetime NOT NULL COMMENT '时间',
   `l_type` varchar(100) NOT NULL COMMENT '类型',
   `l_info` text NOT NULL COMMENT '错误信息',
@@ -99,12 +99,12 @@ INSERT INTO `eload_sys_log` VALUES ('10', '2015-04-17 15:07:45', '日常操作',
 -- ----------------------------
 DROP TABLE IF EXISTS `eload_sys_menu`;
 CREATE TABLE `eload_sys_menu` (
-  `m_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `m_id` int(12) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `m_parent_id` int(12) NOT NULL COMMENT '父id',
   `m_name` varchar(30) NOT NULL COMMENT '描述',
   `m_url` char(30) NOT NULL COMMENT '链接地址 #',
-  `m_sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '排序',
-  `m_dis` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否显示 0 1',
+  `m_sort` int(2) NOT NULL DEFAULT '0' COMMENT '排序',
+  `m_dis` int(1) NOT NULL DEFAULT '0' COMMENT '是否显示 0 1',
   PRIMARY KEY (`m_id`),
   UNIQUE KEY `m_name` (`m_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='系统菜单列表';
@@ -127,15 +127,15 @@ INSERT INTO `eload_sys_menu` VALUES ('11', '9', '博客发布', 'blog/index', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `eload_sys_user`;
 CREATE TABLE `eload_sys_user` (
-  `u_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `u_id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `u_name` char(20) NOT NULL COMMENT '用户名',
   `u_relname` char(20) NOT NULL COMMENT '真实姓名',
   `u_pwd` char(100) NOT NULL COMMENT '密码',
   `u_ip` char(15) NOT NULL COMMENT 'ip地址',
   `u_addtime` datetime NOT NULL COMMENT '创建用户时间',
   `u_lasttime` datetime NOT NULL COMMENT '上次登出时间',
-  `u_count` smallint(6) DEFAULT '1' COMMENT '登录次数',
-  `u_group_id` smallint(6) NOT NULL,
+  `u_count` smallint(5) DEFAULT '1' COMMENT '登录次数',
+  `u_group_id` smallint(5) NOT NULL,
   PRIMARY KEY (`u_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
