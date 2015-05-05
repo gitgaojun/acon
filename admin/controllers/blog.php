@@ -27,8 +27,10 @@
 
             foreach($list as $k=>$v)
             {
-                $list[$k]["b_content"] = mSubStr($v["b_content"], 50)."......";
-
+                if(strlen($v["b_content"]) > 49)
+                {
+                    $list[$k]["b_content"] = mSubStr($v["b_content"], 50)."......";
+                }
             }
             $data['list'] = $list;
             $this->load->vars($data);
@@ -54,6 +56,38 @@
 
             $this->load->vars($data);
             $this->load->view("blog_sel");
+        }
+
+        /**
+         * 添加新博客页面
+         */
+        public function add()
+        {
+            P("blog/index-add");
+            $data['title'] = "添加新博客";
+            $categoryList = $this->m_db->getOne("category", "1=1", "c_id,c_name");
+            if(!isset($categoryList[0]))
+            {
+                $data["categoryList"][0] = $categoryList;
+            }else{
+                $data["categoryList"] = $categoryList;
+            }
+            $this->load->vars($data);
+            $this->load->view("blog_add");
+
+        }
+
+        public function insert()
+        {
+            P("blog/index-add");
+
+            $list["b_category_id"] = empty($this->input->post("c_category_id"))?0:intval($this->input->post("c_category_id"));
+            $list["b_title"] = empty($this->input->post("b_title"))?'':trim($this->input->post("b_title"));
+            $list["b_content"] = empty($this->input->post("b_content"))?'':trim($this->input->post("b_content"));
+            $list["b_time"] = date("Y-m-d H:i:s", time());
+            $this->result["status"]= $this->m_db->autoWrite("blog", $list);
+
+            jsonBack($this->result);
         }
 
         /**
