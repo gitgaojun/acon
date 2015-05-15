@@ -42,7 +42,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             include(APPPATH . "config/database.php");
 
             $link = mysqli_connect($db['acon']['hostname'],$db['acon']['username'],$db['acon']['password'],$db['acon']['database'])
-             or die('mysql error:' . mysqli_errno());
+             or die('mysql error:' . mysqli_connect_error());
             mysqli_query($link, 'set names utf8');
 
             $sql = 'select * from eload_sys_menu where 1 order by m_id';
@@ -76,11 +76,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             include(APPPATH . "config/database.php");
 
             $link = mysqli_connect($db['acon']['hostname'],$db['acon']['username'],$db['acon']['password'],$db['acon']['database'])
-            or die('mysql error:' . mysqli_errno());
+            or die('mysql error:' . mysqli_connect_error());
             mysqli_query($link, 'set names utf8');
 
             $sql = 'select * from eload_sys_group where 1 order by g_id';
-            $result = mysqli_query($link, "$sql");
+            $result = mysqli_query($link, "$sql") or printf("Errorcode: %d\n", mysqli_errno($link));
             if($result){
                 while($row = $result->fetch_assoc()){
                     $result_arr[] = $row;

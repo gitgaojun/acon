@@ -151,12 +151,12 @@ js;
             include(APPPATH . "config/database.php");
 
             $link = mysqli_connect($db['acon']['hostname'],$db['acon']['username'],$db['acon']['password'],$db['acon']['database'])
-            or die('mysql error:' . mysqli_errno());
+            or die('mysql error:' . mysqli_connect_error());
             mysqli_query($link, 'set names utf8');
 
             $sql = 'insert into eload_sys_log (`l_time`, `l_user` , `l_type` , `l_info`) values("'.$list["l_time"].'" , "'.$list["l_user"].'", "'.$list["l_type"].'", "'.$list["l_info"].'")';
 
-            mysqli_query($link, "$sql");
+            mysqli_query($link, "$sql") or printf("Errorcode: %d\n", mysqli_errno($link));
 
         }
     }
