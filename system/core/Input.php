@@ -3,6 +3,7 @@
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
+ * 一个开源的研发框架对于php 5.1.6或者更新
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
@@ -19,7 +20,8 @@
 /**
  * Input Class
  *
- * Pre-processes global input data for security
+ * 保证全局输入数据
+ *
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -30,45 +32,42 @@
 class CI_Input {
 
 	/**
-	 * IP address of the current user
+	 * 现在用户的ip地址
 	 *
 	 * @var string
 	 */
 	var $ip_address				= FALSE;
 	/**
-	 * user agent (web browser) being used by the current user
+	 * 用户agent信息
 	 *
 	 * @var string
 	 */
 	var $user_agent				= FALSE;
 	/**
-	 * If FALSE, then $_GET will be set to an empty array
-	 *
+	 * 如果是false，那么 $_GET 将被设置一个空的数组
 	 * @var bool
 	 */
 	var $_allow_get_array		= TRUE;
 	/**
-	 * If TRUE, then newlines are standardized
+	 * 如果是true，那么换行是标准模式
 	 *
 	 * @var bool
 	 */
 	var $_standardize_newlines	= TRUE;
 	/**
-	 * Determines whether the XSS filter is always active when GET, POST or COOKIE data is encountered
-	 * Set automatically based on config setting
+	 * 积极的过滤 XSS 。可以在config里面设置
 	 *
 	 * @var bool
 	 */
 	var $_enable_xss			= FALSE;
 	/**
-	 * Enables a CSRF cookie token to be set.
-	 * Set automatically based on config setting
+	 * 设置CSRF cookie 记号，可以在config里面设置
 	 *
 	 * @var bool
 	 */
 	var $_enable_csrf			= FALSE;
 	/**
-	 * List of all HTTP request headers
+	 * 所有的http请求头列
 	 *
 	 * @var array
 	 */
