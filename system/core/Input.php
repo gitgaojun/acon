@@ -566,6 +566,7 @@ class CI_Input {
 
 	/**
 	* User Agent
+	* 用户代理
 	*
 	* @access	public
 	* @return	string
@@ -586,6 +587,7 @@ class CI_Input {
 
 	/**
 	* Sanitize Globals
+	* 审查全局
 	*
 	* This function does the following:
 	*
@@ -594,6 +596,9 @@ class CI_Input {
 	* Unsets all globals if register_globals is enabled
 	*
 	* Standardizes newline characters to \n
+	* 这个函数有下面这些作用
+	* 如果疑问的字段是没有被激活的，在$_GET数据中销毁 
+	* 如果 register_globals 是被激活的那么销毁全局数组
 	*
 	* @access	private
 	* @return	void
@@ -601,13 +606,16 @@ class CI_Input {
 	function _sanitize_globals()
 	{
 		// It would be "wrong" to unset any of these GLOBALS.
+		// 用来销毁出错的全局数组
 		$protected = array('_SERVER', '_GET', '_POST', '_FILES', '_REQUEST',
 							'_SESSION', '_ENV', 'GLOBALS', 'HTTP_RAW_POST_DATA',
 							'system_folder', 'application_folder', 'BM', 'EXT',
 							'CFG', 'URI', 'RTR', 'OUT', 'IN');
 
 		// Unset globals for securiy.
+		// 安全的销毁全局数组
 		// This is effectively the same as register_globals = off
+		// register_globals = off 同样有效
 		foreach (array($_GET, $_POST, $_COOKIE) as $global)
 		{
 			if ( ! is_array($global))
@@ -632,6 +640,7 @@ class CI_Input {
 		}
 
 		// Is $_GET data allowed? If not we'll set the $_GET to an empty array
+		// $_GET 数据是否被允许？如果不是，我们将设置 $_GET 为一个空的数组
 		if ($this->_allow_get_array == FALSE)
 		{
 			$_GET = array();
@@ -648,6 +657,7 @@ class CI_Input {
 		}
 
 		// Clean $_POST Data
+		// 清理 $_POST 数据
 		if (is_array($_POST) AND count($_POST) > 0)
 		{
 			foreach ($_POST as $key => $val)
@@ -657,6 +667,7 @@ class CI_Input {
 		}
 
 		// Clean $_COOKIE Data
+		// 清理 $_COOKIE 数据
 		if (is_array($_COOKIE) AND count($_COOKIE) > 0)
 		{
 			// Also get rid of specially treated cookies that might be set by a server
@@ -664,6 +675,7 @@ class CI_Input {
 			// but that when present will trip our 'Disallowed Key Characters' alarm
 			// http://www.ietf.org/rfc/rfc2109.txt
 			// note that the key names below are single quoted strings, and are not PHP variables
+			//
 			unset($_COOKIE['$Version']);
 			unset($_COOKIE['$Path']);
 			unset($_COOKIE['$Domain']);
