@@ -75,7 +75,9 @@ class CI_Input {
 
 	/**
 	 * Constructor
+	 * 构造器
 	 *
+	 * 设置是否全局使用xss处理，是否允许$_GET数组
 	 * Sets whether to globally enable the XSS processing
 	 * and whether to allow the $_GET array
 	 *
@@ -93,6 +95,7 @@ class CI_Input {
 		$this->security =& $SEC;
 
 		// Do we need the UTF-8 class?
+		// 我们需要UTF-8 类？
 		if (UTF8_ENABLED === TRUE)
 		{
 			global $UNI;
@@ -100,6 +103,7 @@ class CI_Input {
 		}
 
 		// Sanitize global arrays
+		// 审查全局数组
 		$this->_sanitize_globals();
 	}
 
@@ -107,7 +111,10 @@ class CI_Input {
 
 	/**
 	 * Fetch from array
+	 * 获取数组
 	 *
+	 *
+	 * helper 函数用来从全局数组取回值
 	 * This is a helper function to retrieve values from global arrays
 	 *
 	 * @access	private
@@ -135,6 +142,7 @@ class CI_Input {
 
 	/**
 	* Fetch an item from the GET array
+	* 取出一条从GET数组
 	*
 	* @access	public
 	* @param	string
@@ -144,11 +152,13 @@ class CI_Input {
 	function get($index = NULL, $xss_clean = FALSE)
 	{
 		// Check if a field has been provided
+		// 核对如果一个范围已经被提供
 		if ($index === NULL AND ! empty($_GET))
 		{
 			$get = array();
 
 			// loop through the full _GET array
+			// 循环通过全部的 _GET 数组
 			foreach (array_keys($_GET) as $key)
 			{
 				$get[$key] = $this->_fetch_from_array($_GET, $key, $xss_clean);
@@ -163,6 +173,7 @@ class CI_Input {
 
 	/**
 	* Fetch an item from the POST array
+	* 取出一条数据从post数组
 	*
 	* @access	public
 	* @param	string
@@ -172,11 +183,13 @@ class CI_Input {
 	function post($index = NULL, $xss_clean = FALSE)
 	{
 		// Check if a field has been provided
+		// 核对如果一个范围已经被提供
 		if ($index === NULL AND ! empty($_POST))
 		{
 			$post = array();
 
 			// Loop through the full _POST array and return it
+			// 循环通过全部的 _POST 数组并返回它
 			foreach (array_keys($_POST) as $key)
 			{
 				$post[$key] = $this->_fetch_from_array($_POST, $key, $xss_clean);
@@ -192,6 +205,7 @@ class CI_Input {
 
 	/**
 	* Fetch an item from either the GET array or the POST
+	* 取出一条数据从任意的 GET 或者 POST 数组中
 	*
 	* @access	public
 	* @param	string	The index key
@@ -214,6 +228,7 @@ class CI_Input {
 
 	/**
 	* Fetch an item from the COOKIE array
+	* 得到一条数据从 COOKIE 数组中
 	*
 	* @access	public
 	* @param	string
@@ -229,7 +244,10 @@ class CI_Input {
 
 	/**
 	* Set cookie
+	* 设置cookie
 	*
+	* 接受六个参数，或者你可以提交一个参数数组在第一个参数中包含
+	* 所有的值
 	* Accepts six parameter, or you can submit an associative
 	* array in the first parameter containing all the values.
 	*
@@ -248,6 +266,7 @@ class CI_Input {
 		if (is_array($name))
 		{
 			// always leave 'name' in last place, as the loop will break otherwise, due to $$item
+			// 总是离开 ‘name’在最后一个位置，对于循环将打破另外预订给 $$item
 			foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'secure', 'name') as $item)
 			{
 				if (isset($name[$item]))
@@ -257,23 +276,29 @@ class CI_Input {
 			}
 		}
 
+		// 如果config 文件中有这些设置并且这儿没有设置那么就按照config的设置
+		// cookie前缀
 		if ($prefix == '' AND config_item('cookie_prefix') != '')
 		{
 			$prefix = config_item('cookie_prefix');
 		}
+		// cookie域名
 		if ($domain == '' AND config_item('cookie_domain') != '')
 		{
 			$domain = config_item('cookie_domain');
 		}
+		// cookie作用路径
 		if ($path == '/' AND config_item('cookie_path') != '/')
 		{
 			$path = config_item('cookie_path');
 		}
+		// 如果为真那么只被认为安全的服务器记住，默认为假
 		if ($secure == FALSE AND config_item('cookie_secure') != FALSE)
 		{
 			$secure = config_item('cookie_secure');
 		}
 
+		// 时间是否是数字或者数字字符串，不是那么就默认的过期时间为当前时间的头一天
 		if ( ! is_numeric($expire))
 		{
 			$expire = time() - 86500;
@@ -283,6 +308,7 @@ class CI_Input {
 			$expire = ($expire > 0) ? time() + $expire : 0;
 		}
 
+		//这个setcookie才是php默认的设置cookie的方法
 		setcookie($prefix.$name, $value, $expire, $path, $domain, $secure);
 	}
 
@@ -290,6 +316,7 @@ class CI_Input {
 
 	/**
 	* Fetch an item from the SERVER array
+	* 得到一个信息从 SERVER 数组
 	*
 	* @access	public
 	* @param	string
@@ -305,7 +332,7 @@ class CI_Input {
 
 	/**
 	* Fetch the IP Address
-	*
+	* 得到这个 IP 地址 
 	* @return	string
 	*/
 	public function ip_address()
@@ -315,6 +342,7 @@ class CI_Input {
 			return $this->ip_address;
 		}
 
+		// 如果在config文件中设置ip地址那么就用那个ip地址，如果没有设置那么就从 $_SERVER['REMOTE_ADDR']获取
 		$proxy_ips = config_item('proxy_ips');
 		if ( ! empty($proxy_ips))
 		{
