@@ -675,7 +675,7 @@ class CI_Input {
 			// but that when present will trip our 'Disallowed Key Characters' alarm
 			// http://www.ietf.org/rfc/rfc2109.txt
 			// note that the key names below are single quoted strings, and are not PHP variables
-			//
+			// 
 			unset($_COOKIE['$Version']);
 			unset($_COOKIE['$Path']);
 			unset($_COOKIE['$Domain']);
@@ -719,9 +719,11 @@ class CI_Input {
 
 	/**
 	* Clean Input Data
+	* 清理输入的数据
 	*
 	* This is a helper function. It escapes data and
 	* standardizes newline characters to \n
+	* helper 函数，它泄漏数据和合服规范在新行特点用 \n
 	*
 	* @access	private
 	* @param	string
@@ -805,6 +807,10 @@ class CI_Input {
 		return $str;
 	}*/
 
+	/**
+	 * 清理键值
+	 *
+	 */
 	function _clean_input_keys($str)   
 	{   
 		$config = &get_config('config');   
@@ -825,6 +831,7 @@ class CI_Input {
 
 	/**
 	 * Request Headers
+	 * 请求头
 	 *
 	 * In Apache, you can simply call apache_request_headers(), however for
 	 * people running other webservers the function is undefined.
@@ -869,8 +876,10 @@ class CI_Input {
 
 	/**
 	 * Get Request Header
+	 * 得到请求头
 	 *
 	 * Returns the value of a single member of the headers class member
+	 * 返回值对于单一成员对于 header 头类成员
 	 *
 	 * @param 	string		array key for $this->headers
 	 * @param	boolean		XSS Clean or not
@@ -900,8 +909,10 @@ class CI_Input {
 
 	/**
 	 * Is ajax Request?
+	 * 是否是ajax请求？
 	 *
 	 * Test to see if a request contains the HTTP_X_REQUESTED_WITH header
+	 * 测试看看如果请求内容是 HTTP_X_REQUESTED_WITH 头
 	 *
 	 * @return 	boolean
 	 */
@@ -914,8 +925,10 @@ class CI_Input {
 
 	/**
 	 * Is cli Request?
+	 * 是否是cli 请求？
 	 *
 	 * Test to see if a request was made from the command line
+	 * 测试看看请求是否来自命令行
 	 *
 	 * @return 	bool
 	 */
