@@ -354,6 +354,7 @@ class CI_Input {
 					// Some proxies typically list the whole chain of IP
 					// addresses through which the client has reached us.
 					// e.g. client_ip, proxy_ip1, proxy_ip2, etc.
+					// 一些客户端ip延伸
 					if (strpos($spoof, ',') !== FALSE)
 					{
 						$spoof = explode(',', $spoof, 2);
@@ -391,6 +392,7 @@ class CI_Input {
 
 	/**
 	* Validate IP Address
+	* 确认ip
 	*
 	* @access	public
 	* @param	string
@@ -402,6 +404,7 @@ class CI_Input {
 		$which = strtolower($which);
 
 		// First check if filter_var is available
+		// 第一检查如果 filter_var 是 可用的
 		if (is_callable('filter_var'))
 		{
 			switch ($which) {
@@ -443,8 +446,9 @@ class CI_Input {
 
 	/**
 	* Validate IPv4 Address
-	*
+	* 证实 IPv4 地址
 	* Updated version suggested by Geert De Deckere
+	* Geert De Deckere 建议被更新的版本
 	*
 	* @access	protected
 	* @param	string
@@ -455,21 +459,25 @@ class CI_Input {
 		$ip_segments = explode('.', $ip);
 
 		// Always 4 segments needed
+		// 总是需要4段
 		if (count($ip_segments) !== 4)
 		{
 			return FALSE;
 		}
 		// IP can not start with 0
+		// IP不能以 0 开始
 		if ($ip_segments[0][0] == '0')
 		{
 			return FALSE;
 		}
 
 		// Check each segment
+		// 检查其他的段
 		foreach ($ip_segments as $segment)
 		{
 			// IP segments must be digits and can not be
 			// longer than 3 digits or greater then 255
+			// IP 段必须数字和不能超过3个数字长度或者说是比255大
 			if ($segment == '' OR preg_match("/[^0-9]/", $segment) OR $segment > 255 OR strlen($segment) > 3)
 			{
 				return FALSE;
@@ -483,6 +491,7 @@ class CI_Input {
 
 	/**
 	* Validate IPv6 Address
+	* 证实 IPv6 地址
 	*
 	* @access	protected
 	* @param	string
