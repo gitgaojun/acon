@@ -3,6 +3,7 @@
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
+ * 一个开源的框架对于php5.1.6或者更新
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
@@ -20,6 +21,7 @@
  * Common Functions
  *
  * Loads the base classes and executes the request.
+ * 加载基础类并执行请求
  *
  * @package		CodeIgniter
  * @subpackage	codeigniter
@@ -32,6 +34,7 @@
 
 /**
 * Determines if the current version of PHP is greater then the supplied value
+* 终止如果当前的版本大于这个值
 *
 * @access	public
 * @param	string
@@ -49,6 +52,7 @@ if ( ! function_exists('is_php'))
 			$_is_php[$version] = (version_compare(PHP_VERSION, $version) < 0) ? FALSE : TRUE;
 		}
 
+		// 当前的版本大的时候返回真，小的时候返回假
 		return $_is_php[$version];
 	}
 }
