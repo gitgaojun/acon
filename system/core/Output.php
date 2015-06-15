@@ -3,6 +3,7 @@
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
+ * 一个开源的框架对于PHP 5.1.6 或者更新
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
@@ -20,6 +21,7 @@
  * Output Class
  *
  * Responsible for sending final output to browser
+ * 负责发送最终的输出到浏览器
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -31,6 +33,7 @@ class CI_Output {
 
 	/**
 	 * Current output string
+	 * 当前的输出字符串
 	 *
 	 * @var string
 	 * @access 	protected
@@ -38,6 +41,7 @@ class CI_Output {
 	protected $final_output;
 	/**
 	 * Cache expiration time
+	 * 缓存过期时间
 	 *
 	 * @var int
 	 * @access 	protected
@@ -45,6 +49,7 @@ class CI_Output {
 	protected $cache_expiration	= 0;
 	/**
 	 * List of server headers
+	 * 服务器头信息列表
 	 *
 	 * @var array
 	 * @access 	protected
@@ -52,6 +57,7 @@ class CI_Output {
 	protected $headers			= array();
 	/**
 	 * List of mime types
+	 * mime类型列表
 	 *
 	 * @var array
 	 * @access 	protected
@@ -59,20 +65,21 @@ class CI_Output {
 	protected $mime_types		= array();
 	/**
 	 * Determines wether profiler is enabled
-	 *
+	 * 决定是否软件是启用的
 	 * @var book
 	 * @access 	protected
 	 */
 	protected $enable_profiler	= FALSE;
 	/**
 	 * Determines if output compression is enabled
-	 *
+	 * 决定如果输出压缩被启用
 	 * @var bool
 	 * @access 	protected
 	 */
 	protected $_zlib_oc			= FALSE;
 	/**
 	 * List of profiler sections
+	 * 分析部分 列表
 	 *
 	 * @var array
 	 * @access 	protected
@@ -80,7 +87,7 @@ class CI_Output {
 	protected $_profiler_sections = array();
 	/**
 	 * Whether or not to parse variables like {elapsed_time} and {memory_usage}
-	 *
+	 * 无论如何都要分析变量像这样{elapsed_tiem}
 	 * @var bool
 	 * @access 	protected
 	 */
@@ -92,9 +99,10 @@ class CI_Output {
 	 */
 	function __construct()
 	{
-		$this->_zlib_oc = @ini_get('zlib.output_compression');
+		$this->_zlib_oc = @ini_get('zlib.output_compression');//利用gzip压缩文件加速
 
 		// Get mime types for later
+		// 得到稍后的 mime 类型
 		if (defined('ENVIRONMENT') AND file_exists(APPPATH.'config/'.ENVIRONMENT.'/mimes.php'))
 		{
 		    include APPPATH.'config/'.ENVIRONMENT.'/mimes.php';
@@ -114,8 +122,9 @@ class CI_Output {
 
 	/**
 	 * Get Output
-	 *
+	 * 得到输出
 	 * Returns the current output string
+	 * 返回当前的输出字符串
 	 *
 	 * @access	public
 	 * @return	string
@@ -129,8 +138,9 @@ class CI_Output {
 
 	/**
 	 * Set Output
-	 *
+	 * 设置输出
 	 * Sets the output string
+	 * 设置输出的字符串
 	 *
 	 * @access	public
 	 * @param	string
@@ -147,8 +157,10 @@ class CI_Output {
 
 	/**
 	 * Append Output
-	 *
+	 * 附加输出
+	 * 
 	 * Appends data onto the output string
+	 * 附近数据在输出字符串上
 	 *
 	 * @access	public
 	 * @param	string
@@ -171,10 +183,12 @@ class CI_Output {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Set Header
+	 * 设置header
 	 *
+	 * 允许你设置一个服务器header头将与最终的显示输出
 	 * Lets you set a server header which will be outputted with the final display.
 	 *
+	 * 注意：如果这个文件是缓存，header头信息将不会被送出，我们需要解决如何让header头信息保存在缓存文件中
 	 * Note:  If a file is cached, headers will not be sent.  We need to figure out
 	 * how to permit header data to be saved with the cache data...
 	 *
@@ -189,6 +203,9 @@ class CI_Output {
 		// but it will not modify the content-length header to compensate for
 		// the reduction, causing the browser to hang waiting for more data.
 		// We'll just skip content-length in those cases.
+		// 如果 zlib.output_compression 是开启的它将压缩输出
+		// 但是他不会去修改 content-length header 头去弥补减少的，导致浏览器等待更多的数据。
+		// 我们将跳过 content-length 在这样的情况下
 
 		if ($this->_zlib_oc && strncasecmp($header, 'content-length', 14) == 0)
 		{
@@ -204,7 +221,8 @@ class CI_Output {
 
 	/**
 	 * Set Content Type Header
-	 *
+	 * 设置内容的header头
+	 * 
 	 * @access	public
 	 * @param	string	extension of the file we're outputting
 	 * @return	void
@@ -216,6 +234,7 @@ class CI_Output {
 			$extension = ltrim($mime_type, '.');
 
 			// Is this extension supported?
+			// 这个扩展是否支持
 			if (isset($this->mime_types[$extension]))
 			{
 				$mime_type =& $this->mime_types[$extension];
@@ -238,6 +257,7 @@ class CI_Output {
 
 	/**
 	 * Set HTTP Status Header
+	 * 设置http状态头信息
 	 * moved to Common procedural functions in 1.7.2
 	 *
 	 * @access	public
@@ -247,7 +267,7 @@ class CI_Output {
 	 */
 	function set_status_header($code = 200, $text = '')
 	{
-		set_status_header($code, $text);
+ 		set_status_header($code, $text);
 
 		return $this;
 	}
@@ -256,6 +276,7 @@ class CI_Output {
 
 	/**
 	 * Enable/disable Profiler
+	 * 打开关闭分析器
 	 *
 	 * @access	public
 	 * @param	bool
@@ -272,8 +293,9 @@ class CI_Output {
 
 	/**
 	 * Set Profiler Sections
-	 *
+	 * 设置分析器
 	 * Allows override of default / config settings for Profiler section display
+	 * 允许推翻默认的或者设置的分析部分展示
 	 *
 	 * @access	public
 	 * @param	array
@@ -293,6 +315,7 @@ class CI_Output {
 
 	/**
 	 * Set Cache
+	 * 设置cache
 	 *
 	 * @access	public
 	 * @param	integer
@@ -309,14 +332,17 @@ class CI_Output {
 
 	/**
 	 * Display Output
+	 * 展示输出
 	 *
 	 * All "view" data is automatically put into this variable by the controller class:
-	 *
+	 * 所有的视图数据都是自动的给到变量里面通过 controller类
+	 * 
 	 * $this->final_output
 	 *
 	 * This function sends the finalized output data to the browser along
 	 * with any server headers and profile data.  It also stops the
 	 * benchmark timer so the page rendering speed and memory usage can be shown.
+	 * 这个函数发送输出数据给浏览器接着服务器header头信息和部分数据。它也停靠基准测试器，可以显示页面渲染速度和内存使用情况
 	 *
 	 * @access	public
 	 * @param 	string
@@ -327,9 +353,11 @@ class CI_Output {
 		// Note:  We use globals because we can't use $CI =& get_instance()
 		// since this function is sometimes called by the caching mechanism,
 		// which happens before the CI super object is available.
+		// 注意：我们用全局的因为我们不能使用 $CI =& get_instance(),应为这个函数有些时候是通过缓存调用的,而在这之前 ci已经是一个存在的对象了
 		global $BM, $CFG;
 
 		// Grab the super object if we can.
+		// 抓取超级对象如果我们可以
 		if (class_exists('CI_Controller'))
 		{
 			$CI =& get_instance();
@@ -338,6 +366,7 @@ class CI_Output {
 		// --------------------------------------------------------------------
 
 		// Set the output data
+		// 设置输出数据
 		if ($output == '')
 		{
 			$output =& $this->final_output;
@@ -346,7 +375,9 @@ class CI_Output {
 		// --------------------------------------------------------------------
 
 		// Do we need to write a cache file?  Only if the controller does not have its
+		// 我们需要去写一个缓存文件?  只是如果控制器没有它
 		// own _output() method and we are not dealing with a cache file, which we
+		// 我们 _output() 模版 和我们不是处理一个缓存文件，当我们可以视 $CI 对象是否存在在上面
 		// can determine by the existence of the $CI object above
 		if ($this->cache_expiration > 0 && isset($CI) && ! method_exists($CI, '_output'))
 		{
@@ -356,7 +387,9 @@ class CI_Output {
 		// --------------------------------------------------------------------
 
 		// Parse out the elapsed time and memory usage,
+		// 解析出运行时间和内存使用量
 		// then swap the pseudo-variables with the data
+		// 接着用数据交换伪变量
 
 		$elapsed = $BM->elapsed_time('total_execution_time_start', 'total_execution_time_end');
 
@@ -371,6 +404,7 @@ class CI_Output {
 		// --------------------------------------------------------------------
 
 		// Is compression requested?
+		// 
 		if ($CFG->item('compress_output') === TRUE && $this->_zlib_oc == FALSE)
 		{
 			if (extension_loaded('zlib'))
