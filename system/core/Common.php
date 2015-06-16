@@ -61,10 +61,14 @@ if ( ! function_exists('is_php'))
 
 /**
  * Tests for file writability
+ * 测试文件是否可写
  *
  * is_writable() returns TRUE on Windows servers when you really can't write to
  * the file, based on the read-only attribute.  is_writable() is also unreliable
  * on Unix servers if safe_mode is on.
+ * is_writable() 返回 TRUE 在一个windows服务器当你确实不能写入一个文件，基于只读。
+ * is_writable() 也是不可靠的在 Unix 服务器 如果是安全模式。
+ * 就是说win32的时候只读和Unix的时候安全模式都不能通过is_writable判断
  *
  * @access	private
  * @return	void
