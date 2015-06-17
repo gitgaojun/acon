@@ -3,6 +3,7 @@
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
+ * 一个开源的框架对于 PHP 5.1.6 或者更新
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
@@ -18,8 +19,10 @@
 
 /**
  * CodeIgniter Config Class
+ * ci 配置类
  *
  * This class contains functions that enable config files to be managed
+ * 这个类包含的函数是使配置文件去成为可以管理类型的
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -31,18 +34,21 @@ class CI_Config {
 
 	/**
 	 * List of all loaded config values
+	 * 所有加载完毕的配置值列表
 	 *
 	 * @var array
 	 */
 	var $config = array();
 	/**
 	 * List of all loaded config files
+	 * 所有的加载完毕的配置文件列表
 	 *
 	 * @var array
 	 */
 	var $is_loaded = array();
 	/**
 	 * List of paths to search when trying to load a config file
+	 * 列表环境去找当试着加载一个配置文件
 	 *
 	 * @var array
 	 */
@@ -52,6 +58,7 @@ class CI_Config {
 	 * Constructor
 	 *
 	 * Sets the $config data from the primary config.php file as a class variable
+	 * 设置config数据从主要的配置文件中作为一个类变量
 	 *
 	 * @access   public
 	 * @param   string	the config file name
