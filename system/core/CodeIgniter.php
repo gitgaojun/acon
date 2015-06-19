@@ -3,6 +3,7 @@
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
+ * 一个开源的框架对于php 5.1.6 或者更新
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
@@ -18,8 +19,10 @@
 
 /**
  * System Initialization File
+ * 设置初始化文件
  *
  * Loads the base classes and executes the request.
+ * 加载基本的类和执行请求
  *
  * @package		CodeIgniter
  * @subpackage	codeigniter
@@ -30,7 +33,7 @@
 
 /**
  * CodeIgniter Version
- *
+ * ci框架的版本
  * @var string
  *
  */
@@ -38,7 +41,7 @@
 
 /**
  * CodeIgniter Branch (Core = TRUE, Reactor = FALSE)
- *
+ * ci分支
  * @var boolean
  *
  */
@@ -48,6 +51,7 @@
  * ------------------------------------------------------
  *  Load the global functions
  * ------------------------------------------------------
+ * 加载全局函数
  */
 	require(BASEPATH.'core/Common.php');
 
@@ -55,6 +59,7 @@
  * ------------------------------------------------------
  *  Load the framework constants
  * ------------------------------------------------------
+ * 加载框架常量
  */
 	if (defined('ENVIRONMENT') AND file_exists(APPPATH.'config/'.ENVIRONMENT.'/constants.php'))
 	{
@@ -69,20 +74,25 @@
  * ------------------------------------------------------
  *  Define a custom error handler so we can log PHP errors
  * ------------------------------------------------------
+ * 设置一个默认的错误处理器我们可以记录php错误信息
  */
 	set_error_handler('_exception_handler');
 
 	if ( ! is_php('5.3'))
-	{
+	{/* 
+	   php 5.3起就废除了这个函数，这个函数用来给传输过来的数据添加斜杠用的
+	 */
 		@set_magic_quotes_runtime(0); // Kill magic quotes
 	}
 
 /*
  * ------------------------------------------------------
  *  Set the subclass_prefix
+ *  设置前缀
  * ------------------------------------------------------
  *
  * Normally the "subclass_prefix" is set in the config file.
+ * 正常时候 subclass_prefix 是设置在config文件中的
  * The subclass prefix allows CI to know if a core class is
  * being extended via a library in the local application
  * "libraries" folder. Since CI allows config items to be
@@ -92,6 +102,9 @@
  * before any classes are loaded
  * Note: Since the config file data is cached it doesn't
  * hurt to load it here.
+ * 设置自定义类库、函数的前缀，默认为MY_，比如需要重写language helper中的lang方法时，
+ * 只需要在helper目录下创建MY_language_herper.php，并实现lang函数即可实现“重载”。
+ * 这里MY_即为subclass_prefix中定义的值
  */
 	if (isset($assign_to_config['subclass_prefix']) AND $assign_to_config['subclass_prefix'] != '')
 	{
@@ -101,6 +114,7 @@
 /*
  * ------------------------------------------------------
  *  Set a liberal script execution time limit
+ *  设置一个自由的脚本执行时间
  * ------------------------------------------------------
  */
 	if (function_exists("set_time_limit") == TRUE AND @ini_get("safe_mode") == 0)
@@ -111,6 +125,7 @@
 /*
  * ------------------------------------------------------
  *  Start the timer... tick tock tick tock...
+ *  设置断点的检测标记
  * ------------------------------------------------------
  */
 	$BM =& load_class('Benchmark', 'core');
@@ -120,6 +135,7 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the hooks class
+ *  实例化钩子类
  * ------------------------------------------------------
  */
 	$EXT =& load_class('Hooks', 'core');
@@ -127,6 +143,7 @@
 /*
  * ------------------------------------------------------
  *  Is there a "pre_system" hook?
+ *  是否使用 pre_system 钩子
  * ------------------------------------------------------
  */
 	$EXT->_call_hook('pre_system');
@@ -134,11 +151,13 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the config class
+ *  实例化 配置文件
  * ------------------------------------------------------
  */
 	$CFG =& load_class('Config', 'core');
 
 	// Do we have any manually set config items in the index.php file?
+	// 你手动设置了配置在index.php中？ 如果设置了，那么就加载到config文件中
 	if (isset($assign_to_config))
 	{
 		$CFG->_assign_to_config($assign_to_config);
@@ -147,12 +166,16 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the UTF-8 class
+ *  实例化 UTF-8 类
  * ------------------------------------------------------
  *
  * Note: Order here is rather important as the UTF-8
  * class needs to be used very early on, but it cannot
  * properly determine if UTf-8 can be supported until
  * after the Config class is instantiated.
+ * 注意：程序这儿是相当重要的作为 UTF-8 类需要使用非常早，
+ * 但是他不能正确的确定如果 UTF-8 
+ * 可以支持在 config 类是实例化过的，之前的
  *
  */
 
@@ -161,6 +184,7 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the URI class
+ *  实力化 URI 类
  * ------------------------------------------------------
  */
 	$URI =& load_class('URI', 'core');
@@ -168,12 +192,14 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the routing class and set the routing
+ *  实例和设置路由类
  * ------------------------------------------------------
  */
 	$RTR =& load_class('Router', 'core');
 	$RTR->_set_routing();
 
 	// Set any routing overrides that may exist in the main index file
+	// 设置路由规则也许存在于 基本的 index 文件中
 	if (isset($routing))
 	{
 		$RTR->_set_overrides($routing);
@@ -182,6 +208,7 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the output class
+ *  实例化输出类
  * ------------------------------------------------------
  */
 	$OUT =& load_class('Output', 'core');
@@ -189,6 +216,7 @@
 /*
  * ------------------------------------------------------
  *	Is there a valid cache file?  If so, we're done...
+ *  是否存在有效的缓存文件，如果是，那么我们
  * ------------------------------------------------------
  */
 	if ($EXT->_call_hook('cache_override') === FALSE)
@@ -202,6 +230,7 @@
 /*
  * -----------------------------------------------------
  * Load the security class for xss and csrf support
+ * 加载安全类
  * -----------------------------------------------------
  */
 	$SEC =& load_class('Security', 'core');
@@ -209,6 +238,7 @@
 /*
  * ------------------------------------------------------
  *  Load the Input class and sanitize globals
+ *  加载输入类并清理全局数组
  * ------------------------------------------------------
  */
 	$IN	=& load_class('Input', 'core');
@@ -216,6 +246,7 @@
 /*
  * ------------------------------------------------------
  *  Load the Language class
+ *  加载语言类
  * ------------------------------------------------------
  */
 	$LANG =& load_class('Lang', 'core');
@@ -223,6 +254,7 @@
 /*
  * ------------------------------------------------------
  *  Load the app controller and local controller
+ *  加载 app 控制器 和 本地控制器 
  * ------------------------------------------------------
  *
  */
