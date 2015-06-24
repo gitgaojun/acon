@@ -259,6 +259,7 @@
  *
  */
 	// Load the base controller class
+	// 加载基础的 控制器 类
 	require BASEPATH.'core/Controller.php';
 
 	function &get_instance()
@@ -273,8 +274,11 @@
 	}
 
 	// Load the local application controller
+	// 加载局部 控制器
 	// Note: The Router class automatically validates the controller path using the router->_validate_request().
 	// If this include fails it means that the default controller in the Routes.php file is not resolving to something valid.
+	// 注意：这个路由类自动验证控制器环境
+	// 如果引用文件失败那么 Routes.php  路由 不能分析变量
 	if ( ! file_exists(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php'))
 	{
 		show_error('Unable to load your default controller. Please make sure the controller specified in your Routes.php file is valid.');
@@ -283,16 +287,19 @@
 	include(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php');
 
 	// Set a mark point for benchmarking
+	// 设置一个断点
 	$BM->mark('loading_time:_base_classes_end');
 
 /*
  * ------------------------------------------------------
  *  Security check
+ *  检查
  * ------------------------------------------------------
  *
  *  None of the functions in the app controller or the
  *  loader class can be called via the URI, nor can
  *  controller functions that begin with an underscore
+ *  没有函数在app 控制器或者加载类不能通过 URI 调用，也不能使用控制器函数在一个底线之前
  */
 	$class  = $RTR->fetch_class();
 	$method = $RTR->fetch_method();
@@ -327,6 +334,7 @@
 /*
  * ------------------------------------------------------
  *  Is there a "pre_controller" hook?
+ *  有 pre_controller 钩子么？
  * ------------------------------------------------------
  */
 	$EXT->_call_hook('pre_controller');
@@ -334,9 +342,11 @@
 /*
  * ------------------------------------------------------
  *  Instantiate the requested controller
+ *  实例化 requested 控制器
  * ------------------------------------------------------
  */
 	// Mark a start point so we can benchmark the controller
+	// 制作一个开始断点这样我们就可以基准这个控制器
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
 
 	$CI = new $class();
@@ -344,6 +354,7 @@
 /*
  * ------------------------------------------------------
  *  Is there a "post_controller_constructor" hook?
+ *  这儿有一个  post_controller_constructor 钩子么？
  * ------------------------------------------------------
  */
 	$EXT->_call_hook('post_controller_constructor');
@@ -351,6 +362,7 @@
 /*
  * ------------------------------------------------------
  *  Call the requested method
+ *  调用一个 requested 模版
  * ------------------------------------------------------
  */
 	// Is there a "remap" function? If so, we call it instead
