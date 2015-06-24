@@ -223,6 +223,7 @@ if ( ! function_exists('is_loaded'))
 *
 * This function lets us grab the config file even if the Config class
 * hasn't been instantiated yet
+* 这个函数让我们加载配置类，即使配置类是已经被实例化过的。所以这而使用的技巧是 静态调用的方式，那样函数就可以方便的改变
 *
 * @access	private
 * @return	array
@@ -279,6 +280,7 @@ if ( ! function_exists('get_config'))
 
 /**
 * Returns the specified config item
+* 返回指定的配置项
 *
 * @access	public
 * @return	mixed
@@ -308,12 +310,14 @@ if ( ! function_exists('config_item'))
 
 /**
 * Error Handler
+* 错误头信息
 *
 * This function lets us invoke the exception class and
 * display errors using the standard error template located
 * in application/errors/errors.php
 * This function will send the error page directly to the
 * browser and exit.
+* 这个函数可以用来制作返回的错误信息
 *
 * @access	public
 * @return	void
@@ -354,9 +358,11 @@ if ( ! function_exists('show_404'))
 
 /**
 * Error Logging Interface
+* 错误日志接口
 *
 * We use this as a simple mechanism to access the logging
 * class and send messages to be logged.
+* 我们用这个去链接接口类设置错误信息
 *
 * @access	public
 * @return	void
@@ -381,7 +387,7 @@ if ( ! function_exists('log_message'))
 
 /**
  * Set HTTP Status Header
- *
+ * 设置http状态信息
  * @access	public
  * @param	int		the status code
  * @param	string
@@ -469,6 +475,7 @@ if ( ! function_exists('set_status_header'))
 
 /**
 * Exception Handler
+* 异常处理信息
 *
 * This is the custom exception handler that is declaired at the top
 * of Codeigniter.php.  The main reason we use this is to permit
@@ -477,6 +484,7 @@ if ( ! function_exists('set_status_header'))
 * effectively intercepts PHP errors, however, we also need
 * to display errors based on the current error_reporting level.
 * We do that with the use of a PHP error template.
+* 这个是用来处理异常信息
 *
 * @access	private
 * @return	void
@@ -515,9 +523,11 @@ if ( ! function_exists('_exception_handler'))
 
 /**
  * Remove Invisible Characters
- *
+ * 移出无用的描述
+ * 
  * This prevents sandwiching null characters
  * between ascii characters, like Java\0script.
+ * 防止夹层空字符，在 ascii编码中，比如java、或者其他的脚本
  *
  * @access	public
  * @param	string
@@ -554,6 +564,7 @@ if ( ! function_exists('remove_invisible_characters'))
 
 /**
 * Returns HTML escaped variable
+* 返回 html 溢出的变量。就是利用函数来处理单引号和双引号
 *
 * @access	public
 * @param	mixed
