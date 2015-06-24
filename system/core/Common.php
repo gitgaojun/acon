@@ -66,13 +66,11 @@ if ( ! function_exists('is_php'))
  * is_writable() returns TRUE on Windows servers when you really can't write to
  * the file, based on the read-only attribute.  is_writable() is also unreliable
  * on Unix servers if safe_mode is on.
-<<<<<<< HEAD
  * 
-=======
  * is_writable() 返回 TRUE 在一个windows服务器当你确实不能写入一个文件，基于只读。
  * is_writable() 也是不可靠的在 Unix 服务器 如果是安全模式。
  * 就是说win32的时候只读和Unix的时候安全模式都不能通过is_writable判断
->>>>>>> 67e83144a2096116def26f256cba087aeedceb67
+
  *
  * @access	private
  * @return	void
@@ -117,10 +115,13 @@ if ( ! function_exists('is_really_writable'))
 
 /**
 * Class registry
+* 注册类
 *
 * This function acts as a singleton.  If the requested class does not
 * exist it is instantiated and set to a static variable.  If it has
 * previously been instantiated the variable is returned.
+* 这个函数担当作为一个单例。接下来是补充说明这儿的单例模式的使用。如果类不存在被实例化和设置静态变量，如果他有
+* 之前被实例化的变量将被返回
 *
 * @access	public
 * @param	string	the class name being requested
@@ -135,6 +136,7 @@ if ( ! function_exists('load_class'))
 		static $_classes = array();
 
 		// Does the class exist?  If so, we're done...
+		// 对象是否存在，如果是，我们就
 		if (isset($_classes[$class]))
 		{
 			return $_classes[$class];
@@ -144,6 +146,7 @@ if ( ! function_exists('load_class'))
 
 		// Look for the class first in the local application/libraries folder
 		// then in the native system/libraries folder
+		// 首先在 application/libraries 文件夹中查找
 		foreach (array(APPPATH, BASEPATH) as $path)
 		{
 			if (file_exists($path.$directory.'/'.$class.'.php'))
@@ -160,6 +163,7 @@ if ( ! function_exists('load_class'))
 		}
 
 		// Is the request a class extension?  If so we load it too
+		// 请求一个类扩展，如果是那么就加载
 		if (file_exists(APPPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php'))
 		{
 			$name = config_item('subclass_prefix').$class;
@@ -191,6 +195,7 @@ if ( ! function_exists('load_class'))
 /**
 * Keeps track of which libraries have been loaded.  This function is
 * called by the load_class() function above
+* 是否被加载了，利用静态变量数组，累加类名值
 *
 * @access	public
 * @return	array
@@ -214,6 +219,7 @@ if ( ! function_exists('is_loaded'))
 
 /**
 * Loads the main config.php file
+* 加载核心配置文件
 *
 * This function lets us grab the config file even if the Config class
 * hasn't been instantiated yet
