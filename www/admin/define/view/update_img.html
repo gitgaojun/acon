@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>上传图片</title>
+	<style type="text/css">
+		@CHARSET "UTF-8";
+		html,body{/* html body 同时设置的时候才能继承的设置100%的属性 */
+			/* margin-top:0px; */
+			/* margin-left:0px; */
+			/* margin-right:0px; */
+			margin:0;/* 上外和下外为0,左外和右外是自适应 */
+			padding:0;
+		    width:100%;
+		    height:100%;
+			font-size:12px;
+		    font-family:Arial, Helvetica, sans-serif,宋体;
+		}
+		a{
+			text-decoration:none;
+		}
+		li{
+		    list-style-type:none;
+		}
+		#content{
+			width:100%;
+			height:100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+		<form enctype="multipart/form-data" action="/admin/index.php/update/img" method="post">
+		<div id="btn_update">
+			<button type="button">+本地图片</button>
+		</div>
+		</form>
+	</div>
+</body>
+</html>
