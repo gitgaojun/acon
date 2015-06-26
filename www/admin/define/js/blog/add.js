@@ -33,4 +33,30 @@ $(document).ready(function(){
         });
 
     });
+
+
+
+    /*图片上传函数*/
+    $("#upd_img").bind("click",function(){
+        
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
