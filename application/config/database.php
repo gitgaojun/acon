@@ -48,7 +48,7 @@
 $active_group = 'acon';
 $active_record = TRUE;
 
-$db['acon']['hostname'] = '127.0.0.1';
+$db['acon']['hostname'] = 'localhost';
 $db['acon']['username'] = 'root';
 $db['acon']['password'] = '123456';
 $db['acon']['database'] = 'acon';

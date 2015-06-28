@@ -14,7 +14,7 @@ class app extends MY_Controller {
      */
 	public function index()
 	{
-        $c_id = empty($this->input->get("c"))?0:intval($this->input->get("c"));
+		$c_id = $this->input->get('c')?0:intval($this->input->get('c'));
         $blogList = $this->blog_model->getBlogList($c_id);
         foreach($blogList as $k=>$v)
         {

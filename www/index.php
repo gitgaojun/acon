@@ -216,5 +216,3 @@ require_once BASEPATH.'core/CodeIgniter.php';
 
 
 
-//session_destroy销毁session
-session_destroy();
