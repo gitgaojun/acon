@@ -26,10 +26,14 @@
 
 
         /**
-         * 得到博客列表
+		 * 得到博客列表
+		 * @author jun
+		 * @param c_id int 分类id
+		 * @param page int 当前页数
+		 * @param pages int 每页条数
          * @return mixed
          */
-        public function getBlogList($c_id)
+        public function getBlogList($c_id, $page, $pages=10)
         {
             if($c_id > 0)
             {
@@ -37,11 +41,15 @@
             }else
             {
                 $whereStr = "";
-            }
-            $sql = "select * from blog as b inner join category as c on b.b_category_id=c.c_id " . $whereStr;
+			}
+			$offset = $pages*($page-1);//查询起始位置
+			$sql = "select * from blog as b inner join category as c on b.b_category_id=c.c_id " . $whereStr .
+				' limit '. $pages . ' offset ' . $offset;
+			$num = $this->db->count_all_results('blog');
+			$this->load->library('page');
+			$getHtmlPage = $this->page->get_page($page, $num);
             $result = $this->db->query($sql)->result_array();
-            //var_dump($result);exit;
-            return $result;
+            return array('data'=>$result,'html_page'=>$getHtmlPage);
         }
 
         /**

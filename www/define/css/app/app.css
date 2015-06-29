@@ -74,4 +74,25 @@ a{
 .b_content{
     color:#000000;
 }
+ul{
+	display:block;
+}
+li{
+	list-style:none;
+	display:block;
+	float:left;
+}
+.page > ul > .cpage{
+	color:red;
+}
+.page > ul > li > a{
+	display:block;
+	padding:5px;
+	margin-left:5px;
+	background-color:white;
+}
+.page > ul > li > a:hover{
+	background-color:green;
+	color:red;
+}
 

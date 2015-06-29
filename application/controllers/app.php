@@ -15,12 +15,14 @@ class app extends MY_Controller {
 	public function index()
 	{
 		$c_id = $this->input->get('c')?0:intval($this->input->get('c'));
-        $blogList = $this->blog_model->getBlogList($c_id);
-        foreach($blogList as $k=>$v)
+		$c_page = $this->input->get('c_page')?intval($this->input->get('c_page')):1;
+        $blogList = $this->blog_model->getBlogList( $c_id , $c_page );
+        foreach($blogList['data'] as $k=>$v)
         {
-            $blogList[$k]["b_content"] = mSubStr($v["b_content"], 50)."......";
+            $blogList['data'][$k]["b_content"] = mSubStr($v["b_content"], 50)."......";
         }
-        $data["blogList"] = $blogList;
+		$data["blogList"] = $blogList['data'];
+		$data['html_page'] = $blogList['html_page'];
         $this->load->vars($data);
 		$this->load->view('app');
 	}
