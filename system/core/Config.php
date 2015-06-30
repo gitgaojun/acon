@@ -94,12 +94,13 @@ class CI_Config {
 
 	/**
 	 * Load Config File
-	 *
+	 * 加载config文件
 	 * @access	public
-	 * @param	string	the config file name
-	 * @param   boolean  if configuration values should be loaded into their own section
-	 * @param   boolean  true if errors should just return false, false if an error message should be displayed
+	 * @param	string	the config file name 文件名
+	 * @param   boolean  if configuration values should be loaded into their own section 如果配置值应该加载到自己的部分
+	 * @param   boolean  true if errors should just return false, false if an error message should be displayed 当true的时候出错返回false。当false的时候出错会返回一条错误信息被展示出来
 	 * @return	boolean	if the file was loaded correctly
+     *
 	 */
 	function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
 	{
