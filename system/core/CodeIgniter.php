@@ -407,11 +407,13 @@
 
 
 	// Mark a benchmark end point
+    // 标识一个基准终点
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_end');
 
 /*
  * ------------------------------------------------------
  *  Is there a "post_controller" hook?
+ * 这个有一个 post_controller 钩子么？
  * ------------------------------------------------------
  */
 	$EXT->_call_hook('post_controller');
@@ -419,6 +421,7 @@
 /*
  * ------------------------------------------------------
  *  Send the final rendered output to the browser
+ * 设置一个最终输出到浏览器
  * ------------------------------------------------------
  */
 	if ($EXT->_call_hook('display_override') === FALSE)
@@ -429,6 +432,7 @@
 /*
  * ------------------------------------------------------
  *  Is there a "post_system" hook?
+ *  这儿有一个 post_system 钩子？
  * ------------------------------------------------------
  */
 	$EXT->_call_hook('post_system');
@@ -436,6 +440,7 @@
 /*
  * ------------------------------------------------------
  *  Close the DB connection if one exists
+ *  关闭 DB 连接如果是存在的
  * ------------------------------------------------------
  */
 	if (class_exists('CI_DB') AND isset($CI->db))
