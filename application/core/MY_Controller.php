@@ -13,7 +13,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     {
 
 		function __construct(){
-			header('content-type:text/html;charset:utf-8;');
             parent::__construct();
             header('Content-type:text/html;charset:utf-8;');
             $this->getCateList();

@@ -1,5 +1,6 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+header('content-type:text/html;charset=utf-8;');
 /**
  * 分页类
  */
@@ -32,16 +33,94 @@ class page
 		$page_preg = $this->get_preg($this->page, $this->nums);
 		$page_next = $this->get_next($this->page, $this->nums);
 		$html_page .= $page_preg;
-		for($i=1;$i<$this->nums;++$i)
-		{
-			// 当为当前页的时候 class = 'cpage'
-			$cpage = $this->page === $i ? 'class="cpage"' : ''; 
-			$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
-		}
+		$page_p = $this->page_style($this->page,$this->nums);
+		$html_page .= $page_p;
 		$html_page .= $page_next;
-		var_dump($html_page);exit;
 		return $html_page;
 	}
+
+
+	/**
+	 * 分页
+	 * @auther jun
+	 * @param int $page 当前页码
+	 * @param int $nums 总页数
+	 * @return string  分页
+	 */
+	protected function page_style($page,$nums)
+	{
+		$html_page = '';
+		$sl = '<li><a>...</a></li>';
+		if($page < 6)
+		{
+			if($nums > 10)
+			{
+				for( $i=1 ; $i<10 ; ++$i)
+				{
+					$cpage = (int)$page === (int)$i ? 'class="cpage"' : ''; 
+					$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
+				}
+				$html_page .= $sl;		
+			}
+			else
+			{
+				for( $i=1 ; $i<$nums ; ++$i)
+				{
+					$cpage = (int)$page === (int)$i ? 'class="cpage"' : ''; 
+					$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
+				}
+			}
+		}
+		elseif( 5 < $page )
+		{
+			if( $nums < 11 )
+			{
+				
+				$html_page .= $sl;
+				for( $i=$nums-9 ; $i<$nums ; ++$i)
+				{
+					$cpage = (int)$page === (int)$i ? 'class="cpage"' : ''; 
+					$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
+				}	
+			}
+			else
+			{
+				if($nums-10 > $page)
+				{
+					$html_page .= $sl;
+					for( $i=($page-4) ; $i<$page+6 ; ++$i )
+					{
+						$cpage = (int)$page === (int)$i ? 'class="cpage"' : ''; 
+						$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
+					}
+					$html_page .= $sl;
+				}
+				else
+				{
+					if( $page+5 > $nums )
+					{
+						for( $i=$nums-10 ; $i<$nums ; ++$i)
+						{
+							$cpage = (int)$page === (int)$i ? 'class="cpage"' : ''; 
+							$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
+						}
+					}
+					else
+					{
+						$html_page .= $sl;
+						for( $i=($page-5) ; $i<$page+5 ; ++$i )
+						{
+							$cpage = (int)$page === (int)$i ? 'class="cpage"' : ''; 
+							$html_page .= '<li '.$cpage.'><a href="?page='.$i.'">'.$i.'</a></li>';
+						}
+						$html_page .= $sl;
+					}
+				}
+			}
+		}
+		return $html_page;
+	}
+
 
 	/**
 	 * 返回上一页

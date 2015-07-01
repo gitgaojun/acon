@@ -82,8 +82,11 @@ li{
 	display:block;
 	float:left;
 }
-.page > ul > .cpage{
-	color:red;
+.cpage > a{
+	background-color:#4ec83b;
+	border:1px solid #4ec83b;
+	font-size:16px;
+	color:rgb(0,0,0);
 }
 .page > ul > li > a{
 	display:block;
