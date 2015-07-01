@@ -12,7 +12,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     class MY_Controller extends CI_Controller
     {
 
-        function __construct(){
+		function __construct(){
+			header('content-type:text/html;charset:utf-8;');
             parent::__construct();
             $this->getCateList();
 

@@ -58,7 +58,7 @@ class page
 			$page_preg .= '';
 		}else
 		{
-			$page_preg .= '<li><a href="?page='.($page-1).'">'.上一页.'</a></li>';
+			$page_preg .= '<li><a href="?page='.($page-1).'">上一页</a></li>';
 		}
 		
 		return $page_preg; 
@@ -80,9 +80,8 @@ class page
 			$page_next .= '';
 		}else
 		{
-			$page_next .= '<li><a href="?page='.($page+1).'">'.下一页.'</a></li>';
+			$page_next .= '<li><a href="?page='.($page+1).'">下一页</a></li>';
 		}
-		echo $page_next;exit;	
 		return $page_next; 
 	}
 
