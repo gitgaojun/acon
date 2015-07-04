@@ -1,8 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
- *
+ * 
  * An open source application development framework for PHP 5.1.6 or newer
+ * 一个开源的开发框架对于 php 5.1.6 或 更新
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
@@ -14,13 +15,19 @@
  * @filesource
  */
 
+/**
+ * 这个类通过一个静态接口来实现其他的类的调用
+ *
+ */
+
 // ------------------------------------------------------------------------
 
 /**
  * CodeIgniter Application Controller Class
- *
+ * ci的控制器集类
  * This class object is the super class that every library in
  * CodeIgniter will be assigned to.
+ * 找个对象是一个超级对象来分配其他的核心类
  *
  * @package		CodeIgniter
  * @subpackage	Libraries

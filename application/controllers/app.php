@@ -14,7 +14,10 @@ class app extends MY_Controller {
      */
 	public function index()
 	{
-		$c_id = $this->input->get('c')?0:intval($this->input->get('c'));
+		$c_id = $this->input->get('c');
+		$c_page = $this->input->get('page');
+		$c_id = empty($c_id)?1:intval($c_id);
+		$c_page = empty($c_page)?1:intval($c_page);
 		$c_page = $this->input->get('page')?intval($this->input->get('page')):1;
         $blogList = $this->blog_model->getBlogList( $c_id , $c_page );
         foreach($blogList['data'] as $k=>$v)

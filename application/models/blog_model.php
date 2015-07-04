@@ -43,13 +43,14 @@
                 $whereStr = "";
 			}
 			$offset = $pages*($page-1);//查询起始位置
-			$sql = "select * from blog as b inner join category as c on b.b_category_id=c.c_id " . $whereStr .
+			$sql = "select SQL_CALC_FOUND_ROWS * from blog as b inner join category as c on b.b_category_id=c.c_id " . $whereStr .
 				' limit '. $pages . ' offset ' . $offset;
-			$num = $this->db->count_all_results('blog');
 			$this->load->library('page');
+			$result = $this->db->query($sql)->result_array();
+			$num = $this->db->query('select FOUND_ROWS()')->result_array();
+			$num = (int)$num[0]['FOUND_ROWS()'];
 			$getHtmlPage = $this->page->get_page($page, $num);
-            $result = $this->db->query($sql)->result_array();
-            return array('data'=>$result,'html_page'=>$getHtmlPage);
+			return array('data'=>$result,'html_page'=>$getHtmlPage);
         }
 
         /**
