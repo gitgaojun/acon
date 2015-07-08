@@ -23,7 +23,7 @@
         function __construct()
         {
             parent::__construct();
-            $_db = $this->load->database();
+            $this->_db = $this->load->database();
         }
 
 
@@ -36,7 +36,7 @@
          */
         public function getOneField($table, $field)
         {
-            $field_value = self::$_db->select($field)->from($table)->query()->result_array();
+            $field_value = $this->_db->select($field)->from($table)->query()->result_array();
             if(empty($field_value))
                 $result = '';
             else
@@ -54,7 +54,7 @@
          */
         public function getOne($table, $field, $where=array())
         {
-            $field_array = self::$_db->select($field)->from($table)->where($where)->query()->result_array();
+            $field_array = $this->_db->select($field)->from($table)->where($where)->query()->result_array();
             if(empty($field_array))
                 $result = array();
             else

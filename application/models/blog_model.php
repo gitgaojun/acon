@@ -35,19 +35,18 @@
          */
         public function getBlogList($c_id, $page, $pages=10)
         {
+			$offset = $pages*($page-1);//查询起始位置
+			$this->db->select('SQL_CALC_FOUND_ROWS * ', false)->from('blog as b')->join('category as c', 'b.b_category_id=c.c_id');
+
+			$this->load->library('page');
             if($c_id > 0)
             {
-                $whereStr = "where c_id='" . $c_id  . "'";
-            }else
-            {
-                $whereStr = "";
-			}
-			$offset = $pages*($page-1);//查询起始位置
-			$sql = "select SQL_CALC_FOUND_ROWS * from blog as b inner join category as c on b.b_category_id=c.c_id " . $whereStr .
-				' limit '. $pages . ' offset ' . $offset;
-			$this->load->library('page');
-			$result = $this->db->query($sql)->result_array();
-			$num = $this->db->query('select FOUND_ROWS()')->result_array();
+                $this->db->where(array('c.c_id'=>$c_id));
+            }
+            $this->db->limit($pages)->offset($offset);
+            $result = $this->db->get()->result_array();
+
+            $num = $this->db->query('select FOUND_ROWS()')->result_array();
 			$num = (int)$num[0]['FOUND_ROWS()'];
 			$getHtmlPage = $this->page->get_page($page, $num);
 			return array('data'=>$result,'html_page'=>$getHtmlPage);
