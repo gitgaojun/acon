@@ -25,6 +25,7 @@
 
             $data["blogList"] = $blogList[0];
 
+
             $this->load->vars($data);
             $this->load->view("details");
         }
