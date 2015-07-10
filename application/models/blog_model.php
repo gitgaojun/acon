@@ -28,9 +28,9 @@
         /**
 		 * 得到博客列表
 		 * @author jun
-		 * @param c_id int 分类id
-		 * @param page int 当前页数
-		 * @param pages int 每页条数
+		 * @param  int $c_id  分类id
+		 * @param int  $page 当前页数
+		 * @param int $pages 每页条数
          * @return mixed
          */
         public function getBlogList($c_id, $page, $pages=10)
@@ -59,8 +59,11 @@
          */
         function getBlog($b_id)
         {
-            $sql = "select * from blog as b inner join category as c on b.b_category_id=c.c_id where b_id='" . $b_id  . "'";
-            $result = $this->db->query($sql)->result_array();
+            $this->db->select('*');
+            $this->db->from('blog as b');
+            $this->db->join('category as c', 'b.b_category_id=c.c_id', 'INNER');
+            $this->db->where(array('b.b_id'=>$b_id));
+            $result = $this->db->get()->result_array();
 
             return $result;
         }
