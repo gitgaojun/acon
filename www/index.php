@@ -1,6 +1,6 @@
 <?php
 
-    /**
+	/**
      * 来定义我们的视图路径
      * @var VIEWFILE
      */
@@ -140,7 +140,7 @@ if (defined('ENVIRONMENT'))
  *  Resolve the system path for increased reliability
  * ---------------------------------------------------------------
  */
-
+	
 	// Set the current directory correctly for CLI requests
 	if (defined('STDIN'))
 	{
@@ -154,7 +154,7 @@ if (defined('ENVIRONMENT'))
 
 	// ensure there's a trailing slash
 	$system_path = rtrim($system_path, '/').'/';
-
+	
 	// Is the system path correct?
 	if ( ! is_dir($system_path))
 	{
@@ -198,7 +198,6 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
-
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
