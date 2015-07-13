@@ -10,22 +10,17 @@
     {
 
         function __construct()
-        {
+		{
             parent::__construct();
             $this->load->model("blog_model");
-
         }
 
         public function index()
-        {
-            $b_id = empty($this->input->get("b"))?0:intval($this->input->get("b"));
-
-
+		{
+			$b_id = $this->input->get('b');
+			$b_id = intval($b_id);
             $blogList = $this->blog_model->getBlog($b_id);
-
             $data["blogList"] = $blogList[0];
-
-
             $this->load->vars($data);
             $this->load->view("details");
         }
