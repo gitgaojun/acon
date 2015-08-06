@@ -65,5 +65,25 @@ $db['acon']['autoinit'] = TRUE;
 $db['acon']['stricton'] = FALSE;
 
 
+$db['joint']['hostname'] = 'mysql:host=192.168.50.251;dbname=joint';
+$db['joint']['username'] = 'joint';
+$db['joint']['password'] = '123456';
+$db['joint']['database'] = 'joint';
+$db['joint']['dbdriver'] = 'mysql';
+$db['joint']['dbprefix'] = '';
+$db['joint']['pconnect'] = FALSE;
+$db['joint']['db_debug'] = TRUE;
+$db['joint']['cache_on'] = FALSE;
+$db['joint']['cachedir'] = '';
+$db['joint']['char_set'] = 'utf8';
+$db['joint']['dbcollat'] = 'utf8_general_ci';
+$db['joint']['swap_pre'] = '';
+$db['joint']['autoinit'] = TRUE;
+$db['joint']['stricton'] = FALSE;
+
+
+
+
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */

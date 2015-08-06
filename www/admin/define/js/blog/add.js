@@ -16,7 +16,7 @@ $(document).ready(function(){
             $(".b_title_err").html("不能为空");
             return false;
         }
-        if(($b_content == null) || (Trim($b_content).length=0))
+        if(($b_content == null) || (Trim($b_content).length===0))
         {
             $(".b_content_err").html("不能为空");
             return false;
